@@ -4,7 +4,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/Spring_Web" />
+    <file type="web" url="file://$PROJECT_DIR$/Spring_MVC" />
   </component>
   <component name="IdProvider" IDEtalkID="2446B77C7FD3C41A2B726A229B7CD2ED" />
   <component name="MavenProjectsManager">
