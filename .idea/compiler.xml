@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Spring_IOC" />
+        <module name="Spring_MVC" />
         <module name="Spring_Web" />
       </profile>
     </annotationProcessing>
