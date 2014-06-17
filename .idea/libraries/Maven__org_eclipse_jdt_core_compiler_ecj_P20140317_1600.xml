@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.jdt.core.compiler:ecj:P20140317-1600">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../resources/localRepository/org/eclipse/jdt/core/compiler/ecj/P20140317-1600/ecj-P20140317-1600.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../resources/localRepository/org/eclipse/jdt/core/compiler/ecj/P20140317-1600/ecj-P20140317-1600-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../resources/localRepository/org/eclipse/jdt/core/compiler/ecj/P20140317-1600/ecj-P20140317-1600-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
