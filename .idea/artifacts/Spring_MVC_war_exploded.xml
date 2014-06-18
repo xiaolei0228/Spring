@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Spring_MVC:war exploded">
+  <artifact type="exploded-war" name="spring-mvc:war exploded">
     <output-path>$PROJECT_DIR$/Spring_MVC/target/spring-web</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Spring_MVC/web/Web" />
