@@ -17,7 +17,7 @@ import org.junit.Before;
  * @Copyright: 2014 ihome.com
  */
 public class BaseControllerTest {
-    protected String url = "http://127.0.0.1:8080/springweb";
+    protected String url = "http://127.0.0.1:8080/springmvc";
     protected HttpResponse response = null;
     protected JSONObject paramJson;
 

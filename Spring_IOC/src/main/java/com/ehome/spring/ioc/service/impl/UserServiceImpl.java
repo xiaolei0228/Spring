@@ -19,6 +19,7 @@ import javax.annotation.Resource;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
+    // ioc 注解方式只需要这样就可以找到对应的bean了...
     @Resource
     private UserDao userDao;
 
