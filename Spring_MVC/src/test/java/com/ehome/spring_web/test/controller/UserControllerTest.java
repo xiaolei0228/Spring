@@ -20,11 +20,42 @@ import java.util.Map;
 public class UserControllerTest extends BaseControllerTest {
 
     @Test
-    public void getUserById() {
-        url += "/user/getUserById.json";
+    public void simpleParam() {
+        url += "/user/simpleParam.json";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("id", 888);
+        paramMap.put("name", "wangwu");
         response = HttpRequest.post(url).form(paramMap).send();
     }
+
+    @Test
+    public void pathVariable() {
+        url += "/user/pathVariable/123/danche";
+        response = HttpRequest.post(url).send();
+    }
+
+    @Test
+    public void processFormSubmit() {
+        url += "/user/processFormSubmit.json";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("id", 888);
+        paramMap.put("name", "单车上的理想");
+        paramMap.put("password", 123456789);
+        paramMap.put("enable", true);
+        response = HttpRequest.post(url).form(paramMap).send();
+    }
+
+    @Test
+    public void httpServletRequestMethod() {
+        url += "/user/httpServletRequest.json?p=lihaha";
+        response = HttpRequest.post(url).send();
+    }
+
+    @Test
+    public void requestParam() {
+        url += "/user/requestParam.json?p=lihaha";
+        response = HttpRequest.post(url).form("a", "zhangsan").send();
+    }
+
 
 }
