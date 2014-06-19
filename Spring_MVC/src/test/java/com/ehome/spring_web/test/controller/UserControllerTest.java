@@ -57,5 +57,40 @@ public class UserControllerTest extends BaseControllerTest {
         response = HttpRequest.post(url).form("a", "zhangsan").send();
     }
 
+    @Test
+    public void getRequestBody() {
+        url += "/user/getRequestBody";
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("name", "单车上的理想");
+        param.put("age", 29);
+        param.put("birthday", "1985-02-28");
+        param.put("isMarry", true);
+        response = HttpRequest.post(url).form(param).send();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

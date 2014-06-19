@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="resources/js/jquery-1.10.2-min.js" type="text/javascript"></script>
+</head>
+<body>
+<input id="getRequestBody" type="button" value="getRequestBody()"><br>
+<input id="getRequestModule" type="button" value="getRequestModule()"><br>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#getRequestBody').bind('click', function () {
+            $.ajax({
+                type: 'post',
+                url: 'api/user/getRequestBody',
+                data: {name: '单车上的理想', age: 29, birthday: '1985-02-28'},
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+
+        $('#getRequestModule').bind('click', function () {
+            $.ajax({
+                type: 'post',
+                url: 'api/user/getRequestModule',
+                data: {name: '单车上的理想', age: 29, password: '123456789', enable: true},
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>

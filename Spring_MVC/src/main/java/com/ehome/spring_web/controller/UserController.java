@@ -1,5 +1,6 @@
 package com.ehome.spring_web.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ehome.spring_web.module.User;
 import com.ehome.spring_web.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class UserController {
     /**
      * 简单参数，前端form里也得有对应的参数名称
      */
-    @RequestMapping("simpleParam")
+    @RequestMapping("/simpleParam")
     @ResponseBody
     public User simpleParam(Long id, String name) {
         System.out.println("id: " + id + "---name: " + name);
@@ -40,7 +41,7 @@ public class UserController {
     /**
      * 通过@PathVariabl注解获取路径中传递参数
      */
-    @RequestMapping("pathVariable/{id}/{name}")
+    @RequestMapping("/pathVariable/{id}/{name}")
     public ModelAndView pathVariable(@PathVariable String id, @PathVariable String name) {
         System.out.println("id: " + id);
         System.out.println("name: " + name);
@@ -49,8 +50,10 @@ public class UserController {
 
     /**
      * 前端form表单直接可以对应这里的参数对象，如：user对象
+     * 直接绑定数据对象模型
+     * @param user 对象模型，前端可直接组装json对象扔过来,也可对应页面上的一个form表单,字段要对应
      */
-    @RequestMapping(value = "processFormSubmit", method = RequestMethod.POST)
+    @RequestMapping(value = "/processFormSubmit", method = RequestMethod.POST)
     public String processFormSubmit(User user) {
         System.out.println(user.getId() + "---" + user.getName() + "---" + user.getPassword() + "---" + user.getEnable());
         return "success";
@@ -59,7 +62,7 @@ public class UserController {
     /**
      * 直接用HttpServletRequest获取
      */
-    @RequestMapping("httpServletRequest")
+    @RequestMapping("/httpServletRequest")
     @ResponseBody
     public String httpServletRequestMethod(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("request获取的参数: " + request.getParameter("p"));
@@ -77,6 +80,21 @@ public class UserController {
         System.out.println(a);
         return "helloWorld";
     }
+
+    /**
+     * 在方法上绑定请求体
+     *
+     * @param body 是一串参数，如：name=xiaohong&age=29&password=123
+     */
+    @RequestMapping("/getRequestBody")
+    @ResponseBody
+    public String getRequestBody(@RequestBody String body) {
+        System.out.println(body);
+        String jsonString = JSONObject.toJSONString(body);
+        System.out.println(jsonString);
+        return "success";
+    }
+
 
 
 
