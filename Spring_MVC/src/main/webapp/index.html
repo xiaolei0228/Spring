@@ -8,6 +8,7 @@
 <body>
 <input id="getRequestBody" type="button" value="getRequestBody()"><br>
 <input id="getRequestModule" type="button" value="getRequestModule()"><br>
+<input id="mapParameters" type="button" value="mapParameters()"><br>
 </body>
 </html>
 <script type="text/javascript">
@@ -33,5 +34,17 @@
                 }
             });
         });
+
+        $('#mapParameters').bind('click', function () {
+            $.ajax({
+                type: 'post',
+                url: 'api/user/mapParameters',
+                data: {name: '单车上的理想', age: 29, password: '123456789', enable: true},
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+
     });
 </script>

@@ -1,5 +1,6 @@
 package com.ehome.spring_web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ehome.spring_web.module.User;
 import com.ehome.spring_web.service.UserService;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * @version V1.0
@@ -70,7 +72,7 @@ public class UserController {
     }
 
     /**
-     * 用注解@RequestParam绑定请求参数a到变量a
+     * 用注解@RequestParam绑定请求参数a到变量a,也就是告诉方法，参数a是前端传过来的参数值
      * 当请求参数a不存在时会有异常发生,可以通过设置属性required=false解决,
      * 例如: @RequestParam(value="a", required=false)
      */
@@ -79,6 +81,20 @@ public class UserController {
     public String requestParam(@RequestParam(value = "a", required = false) String a, ModelMap model) {
         System.out.println(a);
         return "helloWorld";
+    }
+
+    /**
+     * 用@RequestParam绑定前端传过来的参数为map
+     * @param parameterMap
+     * @return
+     */
+    @RequestMapping("/mapParameters")
+    @ResponseBody
+    public String mapParameters(@RequestParam Map<String, Object> parameterMap) {
+        System.out.println(parameterMap);
+        User user = JSON.parseObject(JSON.toJSONString(parameterMap), User.class);
+        System.out.println(user.getPassword());
+        return "success";
     }
 
     /**
