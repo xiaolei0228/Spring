@@ -1,10 +1,12 @@
 package com.ehome.spring_web.test.controller;
 
+import com.alibaba.fastjson.JSON;
 import jodd.http.HttpRequest;
-import jodd.http.HttpResponse;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,6 +57,16 @@ public class UserControllerTest extends BaseControllerTest {
     public void requestParam() {
         url += "/user/requestParam.json?p=lihaha";
         response = HttpRequest.post(url).form("a", "zhangsan").send();
+    }
+
+    @Test
+    public void mapParameters() {
+        url += "/user/mapParameters.json";
+        Map<String, Object> parameterMap = new HashMap<String, Object>();
+        parameterMap.put("name", "haoxiaolei");
+        parameterMap.put("password", "123456798");
+        parameterMap.put("enable", true);
+        response = HttpRequest.post(url).form(parameterMap).send();
     }
 
     @Test

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -84,16 +85,31 @@ public class UserController {
     }
 
     /**
-     * 用@RequestParam绑定前端传过来的参数为map
+     * 用@RequestParam绑定前端传过来的map参数
      * @param parameterMap
-     * @return
      */
-    @RequestMapping("/mapParameters")
+    @RequestMapping(value = "/mapParameters")
     @ResponseBody
     public String mapParameters(@RequestParam Map<String, Object> parameterMap) {
         System.out.println(parameterMap);
         User user = JSON.parseObject(JSON.toJSONString(parameterMap), User.class);
         System.out.println(user.getPassword());
+        return "success";
+    }
+
+    /**
+     * 用@RequestBody绑定前端传过来的list参数, 注意：前端json数据要用JSON.stringify(list)转一下才能传过来
+     * @param parameterList
+     */
+    @RequestMapping(value = "/listParameters")
+    @ResponseBody
+    public String listParameters(@RequestBody List<Map<String,Object>> parameterList) {
+        System.out.println(parameterList);
+        List<Map<String, Object>> userList = JSON.parseObject(JSON.toJSONString(parameterList), List.class);
+        for (Map<String, Object> map : userList) {
+            User user = JSON.parseObject(JSON.toJSONString(map), User.class);
+            System.out.println(user.getName());
+        }
         return "success";
     }
 

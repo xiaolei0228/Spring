@@ -9,6 +9,7 @@
 <input id="getRequestBody" type="button" value="getRequestBody()"><br>
 <input id="getRequestModule" type="button" value="getRequestModule()"><br>
 <input id="mapParameters" type="button" value="mapParameters()"><br>
+<input id="listParameters" type="button" value="listParameters()"><br>
 </body>
 </html>
 <script type="text/javascript">
@@ -40,6 +41,24 @@
                 type: 'post',
                 url: 'api/user/mapParameters',
                 data: {name: '单车上的理想', age: 29, password: '123456789', enable: true},
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+
+        $('#listParameters').bind('click', function () {
+            var list = [];
+            var u1 = {name: '单车上的理想', age: 29, password: '123456789', enable: true};
+            var u2 = {name: '有想法的人', age: 28, password: 'qwertyuiop', enable: false};
+            list.push(u1);
+            list.push(u2);
+            $.ajax({
+                type: 'POST',
+                url: 'api/user/listParameters',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(list),
                 success: function (data) {
                     alert(data);
                 }
