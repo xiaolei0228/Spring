@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="spring-mvc" />
+        <module name="Spring_AOP" />
         <module name="Spring_IOC" />
         <module name="Spring_MVC" />
         <module name="Spring_Web" />

@@ -4,6 +4,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Spring_AOP_Annotation" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_MVC" />
   </component>
   <component name="IdProvider" IDEtalkID="2446B77C7FD3C41A2B726A229B7CD2ED" />
@@ -13,6 +14,7 @@
         <option value="$PROJECT_DIR$/Spring_IOC/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_Web/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_MVC/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_AOP/pom.xml" />
       </list>
     </option>
   </component>
