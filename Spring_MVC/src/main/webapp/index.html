@@ -37,10 +37,18 @@
         });
 
         $('#mapParameters').bind('click', function () {
+            var goodsMap = {
+                baseInfo: {
+                    name: '羽绒服',
+                    price: 899
+                },
+                introduction: '这里填写商品介绍...'
+            };
             $.ajax({
                 type: 'post',
                 url: 'api/user/mapParameters',
-                data: {name: '单车上的理想', age: 29, password: '123456789', enable: true},
+//                data: {name: '单车上的理想', age: 29, password: '123456789', enable: true}, // 简单对象
+                data: JSON.stringify(goodsMap), // 复杂对象
                 success: function (data) {
                     alert(data);
                 }

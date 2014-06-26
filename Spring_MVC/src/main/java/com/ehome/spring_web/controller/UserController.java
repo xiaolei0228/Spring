@@ -91,9 +91,16 @@ public class UserController {
     @RequestMapping(value = "/mapParameters")
     @ResponseBody
     public String mapParameters(@RequestParam Map<String, Object> parameterMap) {
-        System.out.println(parameterMap);
-        User user = JSON.parseObject(JSON.toJSONString(parameterMap), User.class);
-        System.out.println(user.getPassword());
+        Map pMap;
+        String paramJsonStr = parameterMap.toString();
+        if (paramJsonStr.lastIndexOf("=}") != -1) { // 处理复杂json参数对象
+            paramJsonStr = paramJsonStr.substring(1, paramJsonStr.length() - 2);
+            System.out.println(paramJsonStr);
+            pMap = JSON.parseObject(paramJsonStr, Map.class);
+        } else {    // 简单json参数对象不用做处理
+            pMap = parameterMap;
+        }
+        System.out.println(pMap);
         return "success";
     }
 
@@ -105,9 +112,9 @@ public class UserController {
     @ResponseBody
     public String listParameters(@RequestBody List<Map<String,Object>> parameterList) {
         System.out.println(parameterList);
-        List<Map<String, Object>> userList = JSON.parseObject(JSON.toJSONString(parameterList), List.class);
-        for (Map<String, Object> map : userList) {
-            User user = JSON.parseObject(JSON.toJSONString(map), User.class);
+        List userList = JSON.parseObject(JSON.toJSONString(parameterList), List.class);
+        for (Object obj : userList) {
+            User user = JSON.parseObject(JSON.toJSONString(obj), User.class);
             System.out.println(user.getName());
         }
         return "success";
