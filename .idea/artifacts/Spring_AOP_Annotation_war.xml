@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Spring_AOP_Annotation:war">
-    <output-path>$PROJECT_DIR$/Spring_AOP/target</output-path>
-    <root id="archive" name="spring-aop-annotation.war">
-      <element id="artifact" artifact-name="Spring_AOP_Annotation:war exploded" />
-    </root>
-  </artifact>
-</component>
