@@ -17,14 +17,13 @@ import java.util.Map;
 /**
  * @version V1.0
  * @Project: Spring
- * @Title:
+ * @Title: spring-mvc controller层方法使用
  * @Package com.ehome.spring_web.controller
- * @Description:
  * @Author xiaolei-0228@163.com
  * @Date 2014/6/14 0014 23:57
  * @Copyright: 2014 ihome.com
  */
-@Controller()
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Resource
