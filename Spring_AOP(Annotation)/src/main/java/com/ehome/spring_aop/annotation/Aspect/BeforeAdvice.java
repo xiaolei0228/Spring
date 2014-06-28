@@ -1,20 +1,16 @@
-package com.ehome.spring_aop.annotation.Aspect;
+package com.ehome.spring_aop.annotation.aspect;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 /**
- * @version V1.0
- * @Project: Spring
- * @Title:
- * @Package com.ehome.spring_aop.annotation.Aspect
- * @Description:
- * @Author xiaolei-0228@163.com
- * @Date 2014/6/27 0027 23:11
- * @Copyright: 2014 ihome.com
+ * 在定义一个切面的时候，首先要定义成bean(@Component),
+ * 再使用@aspect 定义一个切面类
  */
-// 使用@Aspect 定义一个切面类
+@Component
 @Aspect
 public class BeforeAdvice {
 
@@ -27,5 +23,10 @@ public class BeforeAdvice {
     @Before(value = "anyServiceMethod()")
     public void authorith() {
         System.out.println("LogAspect.authorith()...");
+    }
+
+    @After(value = "anyServiceMethod()")
+    public void afterMethod() {
+        System.out.println("LogAspect.afterMethod()...");
     }
 }

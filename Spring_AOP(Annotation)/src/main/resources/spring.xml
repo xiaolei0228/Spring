@@ -12,8 +12,10 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
     <!-- 告诉spring注解bean的目录 -->
     <context:component-scan base-package="com.ehome.spring_aop.annotation"/>
+
     <!-- spring mvc 注解驱动 -->
     <mvc:annotation-driven>
         <!-- spring解析返回结果成json -->
@@ -23,6 +25,7 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
     <!-- 启用对@AspectJ注解的支持 -->
     <aop:aspectj-autoproxy/>
 
