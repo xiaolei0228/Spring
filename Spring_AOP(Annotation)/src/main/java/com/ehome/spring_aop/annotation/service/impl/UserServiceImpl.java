@@ -26,4 +26,8 @@ public class UserServiceImpl implements IUserService {
         System.out.println("UserServiceImpl.saveUser()...");
         return userDao.saveUser(user);
     }
+
+    public boolean updateUser(Long id) throws Exception {
+        throw new Exception("更新 " + id + " 时出现错误了...");
+    }
 }

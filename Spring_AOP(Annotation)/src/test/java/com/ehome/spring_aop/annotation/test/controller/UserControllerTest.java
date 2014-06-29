@@ -27,6 +27,13 @@ public class UserControllerTest extends BaseControllerTest {
         response = HttpRequest.post(url).form(paramMap).send();
     }
 
+    @Test
+    public void updateUser() {
+        url += "/user/updateUser.json";
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("id", "1");
+        response = HttpRequest.post(url).form(paramMap).send();
+    }
 
 
 

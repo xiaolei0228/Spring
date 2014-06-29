@@ -31,4 +31,15 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public Object updateUser(Long id) {
+        try {
+            userService.updateUser(id);
+        } catch (Exception e) {
+            System.err.println("捕获到的异常信息---->" + e);
+        }
+        return id;
+    }
+
 }

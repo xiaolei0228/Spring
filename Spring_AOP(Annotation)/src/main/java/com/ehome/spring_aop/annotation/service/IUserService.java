@@ -8,4 +8,6 @@ import com.ehome.spring_aop.annotation.module.User;
 public interface IUserService {
 
     boolean saveUser(User user);
+
+    boolean updateUser(Long id) throws Exception;
 }
