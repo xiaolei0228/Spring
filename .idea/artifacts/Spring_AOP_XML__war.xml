@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Spring_AOP(XML):war">
+    <output-path>$PROJECT_DIR$/Spring_AOP(XML)/target</output-path>
+    <root id="archive" name="spring-aop-xml.war">
+      <element id="artifact" artifact-name="Spring_AOP(XML):war exploded" />
+    </root>
+  </artifact>
+</component>
