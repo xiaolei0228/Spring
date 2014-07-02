@@ -27,8 +27,7 @@ public class UserController {
     @RequestMapping("/saveUser")
     @ResponseBody
     public Object saveUser(User user) {
-        userService.saveUser(user);
-        return user;
+        return userService.saveUser(user);
     }
 
     @RequestMapping("/updateUser")

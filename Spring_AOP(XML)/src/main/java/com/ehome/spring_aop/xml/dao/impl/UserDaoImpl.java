@@ -28,6 +28,6 @@ public class UserDaoImpl implements IUserDao {
     }
 
     public boolean saveUser(User user) {
-        return false;
+        return true;
     }
 }

@@ -26,4 +26,25 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+
+    <!-- 先把MyAdvice注册为一个bean -->
+    <bean id="myAdviceAspect" class="com.ehome.spring_aop.xml.aspect.MyAdvice"/>
+    <aop:config>
+        <!-- 定义切入点 -->
+        <aop:pointcut id="myAdvicePointCut" expression="execution(* com.ehome.spring_aop.xml.service.impl.*.*(..))"/>
+        <!-- 定义切面类,优先级为2 -->
+        <aop:aspect id="" ref="myAdviceAspect" order="2">
+            <!-- 在切入点myAdvicePointCut中的某个方法之前执行先执行 beforeMethod()方法-->
+            <aop:before method="beforeMethod" pointcut-ref="myAdvicePointCut"/>
+            <!-- 在切入点myAdvicePointCut中的某个方法执行之后(无论成功与否)再执行 afterMethod()方法-->
+            <aop:after method="afterMethod" pointcut-ref="myAdvicePointCut"/>
+            <!-- 在切入点myAdvicePointCut中的某个方法成功返回之后再执行 afterReturningMethod()方法-->
+            <aop:after-returning method="afterReturningMethod" pointcut-ref="myAdvicePointCut"/>
+            <!-- 在切入点myAdvicePointCut中的某个方法前后执行 aroundMethod()方法。注：一般不建议使用Around-->
+            <!--<aop:around method="aroundMethod" pointcut-ref="myAdvicePointCut"/>-->
+            <!-- 在切入点myAdvicePointCut中的某个方法抛出异常后再执行 afterReturningMethod()方法-->
+            <aop:after-throwing method="afterThrowingMethod" pointcut-ref="myAdvicePointCut"/>
+        </aop:aspect>
+    </aop:config>
+
 </beans>
