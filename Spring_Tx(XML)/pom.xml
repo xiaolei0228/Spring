@@ -11,9 +11,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat-version>7.0.53</tomcat-version>
-        <spring.version>4.0.5.RELEASE</spring.version>
-        <jodd.version>3.5.2</jodd.version>
-        <fastjson.version>1.1.41</fastjson.version>
+        <spring-version>4.0.5.RELEASE</spring-version>
+        <jodd-version>3.5.2</jodd-version>
+        <fastjson-version>1.1.41</fastjson-version>
+        <druid-version>1.0.7</druid-version>
+        <mysql-version>5.1.31</mysql-version>
     </properties>
 
     <dependencies>
@@ -23,6 +25,7 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
         <!-- tomcat -start [ -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -43,39 +46,48 @@
             <scope>provided</scope>
         </dependency>
         <!-- ] tomcat -end -->
+
         <!-- spring -start [ -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring-version}</version>
         </dependency>
         <!-- ] spring -end -->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-version}</version>
+        </dependency>
+
         <!-- jodd -start [ -->
         <dependency>
             <groupId>org.jodd</groupId>
             <artifactId>jodd-core</artifactId>
-            <version>${jodd.version}</version>
+            <version>${jodd-version}</version>
         </dependency>
         <dependency>
             <groupId>org.jodd</groupId>
             <artifactId>jodd-http</artifactId>
-            <version>${jodd.version}</version>
+            <version>${jodd-version}</version>
         </dependency>
         <!-- ] jodd -end -->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
+            <version>${fastjson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.0.7</version>
+            <version>${druid-version}</version>
         </dependency>
     </dependencies>
     <build>
