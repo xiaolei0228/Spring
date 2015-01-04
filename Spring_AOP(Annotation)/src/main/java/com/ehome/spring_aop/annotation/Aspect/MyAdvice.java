@@ -53,6 +53,8 @@ public class MyAdvice {
      * Around 增强处理近似等于 Before 增强处理和  AfterReturning 增强处理的总和。
      * 它可改变执行目标方法的参数值，也可改变目标方法之后的返回值
      * @param joinPoint 连接点
+     *
+     * 注：@Around与@Before和@After不能同时使用
      */
     @Around("anyServiceMethod()")
     public void aroundProcessTx(ProceedingJoinPoint joinPoint) throws Throwable {
