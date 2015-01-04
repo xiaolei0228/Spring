@@ -56,13 +56,13 @@ public class MyAdvice {
      *
      * 注：@Around与@Before和@After不能同时使用
      */
-    @Around("anyServiceMethod()")
-    public void aroundProcessTx(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("执行目标方法之前，模拟开启事务...");
-        // 执行目标方法，并保存目标方法返回值
-        Object rvt = joinPoint.proceed();
-        System.out.println("执行目标方法之后，模拟关闭事务...\t  返回值：" + rvt);
-    }
+//    @Around(value = "anyServiceMethod()")
+//    public void aroundProcessTx(ProceedingJoinPoint joinPoint) throws Throwable {
+//        System.out.println("执行目标方法之前，模拟开启事务...");
+//        // 执行目标方法，并保存目标方法返回值
+//        Object rvt = joinPoint.proceed();
+//        System.out.println("执行目标方法之后，模拟关闭事务...\t  返回值：" + rvt);
+//    }
 
 
 }
