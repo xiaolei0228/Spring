@@ -4,7 +4,7 @@ package com.ehome.spring_aop.xml.module;
  * @version V1.0
  * @Project: Spring
  * @Title:
- * @Package com.ehome.spring_aop.annotation.service
+ * @Package com.ehome.spring_aop.xml.service
  * @Description:
  * @Author xiaolei-0228@163.com
  * @Date 2014/6/27 0027 22:39
