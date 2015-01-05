@@ -19,7 +19,7 @@ public class StartTomcat {
 
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
+        tomcat.setPort(80);
 
         tomcat.setBaseDir(".");
         tomcat.getHost().setAppBase(webrootPath);
