@@ -23,10 +23,16 @@ public class UserControllerTest extends BaseControllerTest {
         url += "/user/saveUser";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("id", 888);
-        paramMap.put("name", "xiaolei");
+        paramMap.put("name", "zhaoliu");
         paramMap.put("sex", "1");
         paramMap.put("mobile", "13071011950");
         response = HttpRequest.post(url).form(paramMap).send();
+    }
+
+    @Test
+    public void findList() {
+        url += "/user/findList";
+        response = HttpRequest.post(url).send();
     }
 
 

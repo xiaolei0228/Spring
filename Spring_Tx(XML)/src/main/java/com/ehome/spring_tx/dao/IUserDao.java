@@ -4,6 +4,7 @@ package com.ehome.spring_tx.dao;
 import com.ehome.spring_tx.module.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by haoxiaolei on 2014/6/13 0013.
@@ -13,5 +14,5 @@ public interface IUserDao {
 
     boolean saveUser(User user);
 
-    List<User> findList();
+    List findList();
 }

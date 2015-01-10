@@ -41,6 +41,8 @@ public class UserController {
         return id;
     }
 
+    @RequestMapping("/findList")
+    @ResponseBody
     public Object findList() {
         return userService.findList();
     }

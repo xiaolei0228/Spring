@@ -33,6 +33,7 @@
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
+        <property name="defaultAutoCommit" value="false"/>  <!-- 把数据库的提交事务关闭，让spring来管理 -->
 
         <!-- 配置初始化大小、最小、最大。通常来说，只需要修改initialSize、minIdle、maxActive。-->
         <property name="initialSize" value="1"/>
@@ -63,12 +64,18 @@
         <property name="filters" value="stat"/>
     </bean>
 
+    <!-- jdbc模板 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <!-- jdbc事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <!-- 配置事务的传播范围 -->
-    <tx:advice id="ehomeTxAdvice" transaction-manager="transactionManager">
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 定义方法的过滤规则 -->
         <tx:attributes>
             <tx:method name="add*" propagation="REQUIRED"/>
             <tx:method name="insert*" propagation="REQUIRED"/>
@@ -77,23 +84,21 @@
             <tx:method name="modify*" propagation="REQUIRED"/>
             <tx:method name="delete*" propagation="REQUIRED"/>
             <tx:method name="remove*" propagation="REQUIRED"/>
+
+            <tx:method name="find*" propagation="NOT_SUPPORTED" read-only="true"/>
+            <tx:method name="search*" propagation="NOT_SUPPORTED" read-only="true"/>
+            <tx:method name="get*" propagation="NOT_SUPPORTED" read-only="true"/>
+            <tx:method name="fetch*" propagation="NOT_SUPPORTED" read-only="true"/>
+            <tx:method name="list*" propagation="NOT_SUPPORTED" read-only="true"/>
+            <tx:method name="check*" propagation="NOT_SUPPORTED" read-only="true"/>
         </tx:attributes>
     </tx:advice>
+
     <!-- 配置事务的切入点 -->
-    <aop:config expose-proxy="true">
+    <aop:config expose-proxy="true" proxy-target-class="true">
         <aop:pointcut id="txPointcut" expression="execution(* com.ehome.spring_tx.service..*.*(..))"/>
-        <aop:advisor advice-ref="ehomeTxAdvice" pointcut-ref="txPointcut"/>
+        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>
-
-    <!-- jdbc模板 -->
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <!-- 事务模板 -->
-    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
-        <property name="transactionManager" ref="transactionManager"/>
-    </bean>
 
 
 </beans>

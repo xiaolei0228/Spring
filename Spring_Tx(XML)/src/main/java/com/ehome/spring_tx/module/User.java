@@ -13,7 +13,7 @@ package com.ehome.spring_tx.module;
 public class User {
     private Long id;
     private String name;
-    private String sex;
+    private int sex;
     private String mobile;
 
     public Long getId() {
@@ -32,11 +32,11 @@ public class User {
         this.name = name;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

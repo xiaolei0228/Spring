@@ -3,7 +3,6 @@ package com.ehome.spring_tx.dao.impl;
 import com.ehome.spring_tx.dao.IUserDao;
 import com.ehome.spring_tx.module.User;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.object.SqlUpdate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -38,7 +37,18 @@ public class UserDaoImpl implements IUserDao {
         return result > 0;
     }
 
-    public List<User> findList() {
+    public List findList() {
         return null;
+//        String sql = "select count(1) from t_user";
+//        return jdbcTemplate.query(sql, new RowMapper() {
+//            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                User u = new User();
+//                u.setId(rs.getLong("id"));
+//                u.setName(rs.getString("name"));
+//                u.setSex(rs.getInt("sex"));
+//                u.setMobile(rs.getString("mobile"));
+//                return u;
+//            }
+//        });
     }
 }
