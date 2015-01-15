@@ -21,7 +21,7 @@ public class UserDaoImpl implements IUserDao{
 
     public boolean save(User user) {
         entityManager.persist(user);
-        return false;
+        return true;
     }
 
     public boolean update(User user) {

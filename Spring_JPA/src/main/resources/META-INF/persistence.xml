@@ -15,7 +15,7 @@
             <!--自动输出schema创建DDL语句 -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
             <property name="javax.persistence.validation.mode" value="none"/>
         </properties>
     </persistence-unit>

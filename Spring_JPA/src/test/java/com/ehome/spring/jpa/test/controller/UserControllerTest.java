@@ -22,7 +22,7 @@ public class UserControllerTest extends BaseControllerTest {
     public void saveUser() {
         url += "/user/save";
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("name", "单车上的理想");
+        paramMap.put("name", "郝晓雷");
         paramMap.put("sex", "1");
         paramMap.put("mobile", "13071011950");
         response = HttpRequest.post(url).form(paramMap).send();
