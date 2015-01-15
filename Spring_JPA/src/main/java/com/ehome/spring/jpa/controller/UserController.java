@@ -23,7 +23,6 @@ public class UserController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     public Object save(User user) {
-        System.out.println(user.getName());
         return userService.save(user);
     }
 }
