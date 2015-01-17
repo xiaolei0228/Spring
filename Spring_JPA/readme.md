@@ -1,0 +1,1 @@
+不建议用IFunctionDao这样的方式(spring data jpa已经自动帮实现了),可以用在简单的单表操作上

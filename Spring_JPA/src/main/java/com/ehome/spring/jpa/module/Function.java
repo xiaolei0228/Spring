@@ -14,23 +14,24 @@ import java.io.Serializable;
 @Entity
 @Table(name = "t_function")
 public class Function implements Serializable {
-    private String id;
+    private Long id;
     private String name;
     private String ename;
     private String description;
 
 
+
     @Id
     @GeneratedValue
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name = "name")
+    @Column(name = "name", length = 30)
     public String getName() {
         return name;
     }
@@ -39,7 +40,7 @@ public class Function implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "ename")
+    @Column(name = "ename", length = 30)
     public String getEname() {
         return ename;
     }
