@@ -5,7 +5,7 @@ import com.ehome.spring.jpa.module.BaseEntity;
 /**
  * Created by xiaolei on 2015-01-19 22:24
  */
-public interface IBaseDao<Entity extends BaseEntity> {
+public interface IBaseDao<Entity> {
 
     /**
      * 保存

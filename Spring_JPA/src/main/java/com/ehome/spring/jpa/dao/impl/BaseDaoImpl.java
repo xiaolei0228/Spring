@@ -1,10 +1,11 @@
 package com.ehome.spring.jpa.dao.impl;
 
 import com.ehome.spring.jpa.dao.IBaseDao;
-import com.ehome.spring.jpa.module.BaseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xiaolei on 2015-01-19 22:37
@@ -22,7 +23,7 @@ public class BaseDaoImpl implements IBaseDao {
      *
      * @return 保存后的对象
      */
-    public BaseEntity save(BaseEntity entity) {
+    public Object save(Object entity) {
         em.persist(entity);
         return entity;
     }
@@ -35,7 +36,12 @@ public class BaseDaoImpl implements IBaseDao {
      * @return 保存后的对象集合
      */
     public Iterable saveInBatch(Iterable iterable) {
-        return null;
+        List<Object> objList = new ArrayList<>();
+        for (Object obj : iterable) {
+            em.persist(obj);
+            objList.add(obj);
+        }
+        return objList;
     }
 
     /**
@@ -45,7 +51,7 @@ public class BaseDaoImpl implements IBaseDao {
      *
      * @return 更新后的对象
      */
-    public BaseEntity update(BaseEntity entity) {
+    public Object update(Object entity) {
         return null;
     }
 
