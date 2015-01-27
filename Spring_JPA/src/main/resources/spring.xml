@@ -66,7 +66,6 @@
         此配置和上面的配置是并行的，是两种方式 -->
     <jpa:repositories base-package="com.ehome.spring.jpa.dao"
                       entity-manager-factory-ref="entityManagerFactory"
-                      factory-class="com.ehome.spring.jpa.dao.impl.MyRepositoryFactoryBean"
                       transaction-manager-ref="txManager"/>
 
 
