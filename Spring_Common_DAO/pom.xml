@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.version>7.0.53</tomcat.version>
         <spring.version>4.0.5.RELEASE</spring.version>
+        <springtest.version>3.2.9.RELEASE</springtest.version>
         <spring-data-jpa.version>1.7.1.RELEASE</spring-data-jpa.version>
         <aspectjweaver.version>1.8.4</aspectjweaver.version>
         <jodd.version>3.5.2</jodd.version>
@@ -53,6 +54,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springtest.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

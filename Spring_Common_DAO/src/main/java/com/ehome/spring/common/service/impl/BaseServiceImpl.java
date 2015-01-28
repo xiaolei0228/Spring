@@ -17,7 +17,25 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     private IBaseDao<T, PK> baseDao;
 
 
+    /**
+     * 保存
+     *
+     * @param entity 对象实体
+     *
+     * @return 保存后的对象
+     */
     public T save(T entity) {
         return baseDao.save(entity);
+    }
+
+    /**
+     * 批量保存
+     *
+     * @param entities 对象集合
+     *
+     * @return 保存后的对象集合
+     */
+    public Iterable<T> save(Iterable<T> entities) {
+        return baseDao.save(entities);
     }
 }

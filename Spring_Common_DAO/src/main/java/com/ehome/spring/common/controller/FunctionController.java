@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xiaolei on 2015-01-17 23:23
@@ -23,9 +25,17 @@ public class FunctionController {
     @RequestMapping("save")
     @ResponseBody
     public Object save(Function function) {
-        Function savedFunc = functionService.save(function);
+        //Function savedFunc = functionService.save(function);
+        List<Function> functionList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            Function fun = new Function();
+            fun.setName("测试功能_" + i);
+            fun.setEname("testFunc_" + i);
+            fun.setDescription("描述... " + i);
+            functionList.add(fun);
+        }
 
-        return savedFunc;
+        return functionService.save(functionList);
     }
 
 

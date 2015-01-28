@@ -15,9 +15,9 @@ public class FunctionControllerTest extends BaseControllerTest {
     public void saveFunction() {
         url += "/func/save";
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("name", "更新");
-        paramMap.put("ename", "update");
-        paramMap.put("description", "更新功能");
+        paramMap.put("name", "添加");
+        paramMap.put("ename", "add");
+        paramMap.put("description", "添加功能");
         response = HttpRequest.post(url).form(paramMap).send();
     }
 
