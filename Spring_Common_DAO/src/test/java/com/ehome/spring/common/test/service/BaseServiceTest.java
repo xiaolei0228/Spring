@@ -4,6 +4,7 @@ import com.ehome.spring.common.module.Function;
 import com.ehome.spring.common.service.IBaseService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by haoxiaolei on 2015-01-28 17:53
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:spring.xml")
 public class BaseServiceTest {
 
     @Resource

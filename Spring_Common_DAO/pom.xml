@@ -13,6 +13,7 @@
         <tomcat.version>7.0.53</tomcat.version>
         <spring.version>4.0.5.RELEASE</spring.version>
         <springtest.version>3.2.9.RELEASE</springtest.version>
+        <servletapi.version>3.1.0</servletapi.version>
         <spring-data-jpa.version>1.7.1.RELEASE</spring-data-jpa.version>
         <aspectjweaver.version>1.8.4</aspectjweaver.version>
         <jodd.version>3.5.2</jodd.version>
@@ -55,10 +56,17 @@
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
         </dependency>
+            <!-- spring test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${springtest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servletapi.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
