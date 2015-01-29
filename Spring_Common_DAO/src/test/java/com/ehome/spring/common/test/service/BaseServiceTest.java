@@ -35,4 +35,17 @@ public class BaseServiceTest {
         baseService.save(functionList);
     }
 
+    @Test
+    public void update() {
+        Function function = new Function();
+        function.setId(21L);
+        function.setName("测试功能_修改");
+        //function.setEname("testFunc_修改");
+        //function.setDescription("描述... 修改");
+
+        baseService.update(function);
+    }
+
+
+
 }

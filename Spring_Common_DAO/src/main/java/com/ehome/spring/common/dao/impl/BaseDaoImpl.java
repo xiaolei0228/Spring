@@ -13,7 +13,7 @@ import java.util.List;
  * Created by haoxiaolei on 2015-01-27 16:37
  */
 @Repository("baseDao")
-public abstract class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> {
+public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> {
 
     @PersistenceContext
     private EntityManager em;
@@ -42,5 +42,16 @@ public abstract class BaseDaoImpl<T, PK extends Serializable> implements IBaseDa
         }
 
         return result;
+    }
+
+    /**
+     * 更新
+     *
+     * @param enitty 对象实体
+     *
+     * @return 更新后的对象
+     */
+    public T update(T enitty) {
+        return em.merge(enitty);
     }
 }

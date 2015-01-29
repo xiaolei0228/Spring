@@ -23,4 +23,13 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * @return 保存后的对象集合
      */
     Iterable<T> save(Iterable<T> entities);
+
+    /**
+     * 更新
+     *
+     * @param enitty 对象实体
+     *
+     * @return 更新后的对象
+     */
+    T update(T enitty);
 }

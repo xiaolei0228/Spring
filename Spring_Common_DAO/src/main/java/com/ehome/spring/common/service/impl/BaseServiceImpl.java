@@ -38,4 +38,15 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     public Iterable<T> save(Iterable<T> entities) {
         return baseDao.save(entities);
     }
+
+    /**
+     * 更新
+     *
+     * @param enitty 对象实体
+     *
+     * @return 更新后的对象
+     */
+    public T update(T enitty) {
+        return baseDao.update(enitty);
+    }
 }
