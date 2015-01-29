@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.version>7.0.53</tomcat.version>
-        <spring.version>4.0.5.RELEASE</spring.version>
+        <spring.version>4.1.4.RELEASE</spring.version>
         <spring-data-jpa.version>1.7.1.RELEASE</spring-data-jpa.version>
         <aspectjweaver.version>1.8.4</aspectjweaver.version>
         <jodd.version>3.5.2</jodd.version>
