@@ -16,7 +16,15 @@ public class FunctionServiceImpl implements IFunctionService {
     @Resource
     private IFunctionDao functionDao;
 
-    public Function sava(Function function) {
+    public Function save(Function function) {
         return functionDao.save(function);
+    }
+
+    public Function update(Function function) {
+        return functionDao.save(function);
+    }
+
+    public Function findById(Long id) {
+        return functionDao.findOne(id);
     }
 }

@@ -23,7 +23,7 @@ public class FunctionController {
     @RequestMapping("save")
     @ResponseBody
     public Object save(Function function) {
-        Function savedFunc = functionService.sava(function);
+        Function savedFunc = functionService.save(function);
 
         return savedFunc;
     }

@@ -7,6 +7,9 @@ import com.ehome.spring.jpa.module.Function;
  */
 public interface IFunctionService {
 
-    public Function sava(Function function);
+    public Function save(Function function);
 
+    public Function update(Function function);
+
+    public Function findById(Long id);
 }
