@@ -33,12 +33,14 @@ public class FunctionServiceTest {
 
     @Test
     public void update() {
-        Function function = funService.findById(34L);
-        function.setName("测试功能_修改213");
-        //function.setEname("testFunc_修改");
-        //function.setDescription("描述... 修改");
+        Function function = funService.findById(35L);
+        if (function != null) {
+            function.setName("测试功能_修改213");
+            //function.setEname("testFunc_修改");
+            //function.setDescription("描述... 修改");
 
-        funService.update(function);
+            funService.update(function);
+        }
     }
 
 

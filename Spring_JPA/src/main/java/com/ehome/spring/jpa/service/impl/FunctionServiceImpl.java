@@ -20,6 +20,11 @@ public class FunctionServiceImpl implements IFunctionService {
         return functionDao.save(function);
     }
 
+    /**
+     * 更新。更新效率不高，但代码少，开发量少
+     * @param function
+     * @return
+     */
     public Function update(Function function) {
         return functionDao.save(function);
     }
