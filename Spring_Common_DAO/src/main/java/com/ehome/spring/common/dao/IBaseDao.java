@@ -32,4 +32,24 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * @return 更新后的对象
      */
     T update(T enitty);
+
+    /**
+     * 删除
+     *
+     * @param entity 要删除的对象
+     *
+     * @return 返回删除的对象
+     */
+    T delete(T entity);
+
+    /**
+     * 根据主键起查询对象
+     *
+     * @param entityClass 对象的class
+     * @param pk          主键
+     *
+     * @return 对象实体
+     */
+    T findById(Class<T> entityClass, PK pk);
+
 }

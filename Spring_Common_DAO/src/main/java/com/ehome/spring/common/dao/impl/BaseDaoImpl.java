@@ -32,15 +32,12 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
      */
     public Iterable<T> save(Iterable<T> entities) {
         List<T> result = new ArrayList<>();
-
         if (entities == null) {
             return result;
         }
-
         for (T entity : entities) {
             result.add(save(entity));
         }
-
         return result;
     }
 
@@ -53,5 +50,29 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
      */
     public T update(T enitty) {
         return em.merge(enitty);
+    }
+
+    /**
+     * 删除
+     *
+     * @param entity 要删除的对象
+     *
+     * @return 返回删除的对象
+     */
+    public T delete(T entity) {
+        em.remove(entity);
+        return entity;
+    }
+
+    /**
+     * 根据主键起查询对象
+     *
+     * @param entityClass 对象的class
+     * @param pk          主键
+     *
+     * @return 对象实体
+     */
+    public T findById(Class<T> entityClass, PK pk) {
+        return em.find(entityClass, pk);
     }
 }
