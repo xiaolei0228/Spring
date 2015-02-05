@@ -60,7 +60,7 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
      * @return 返回删除的对象
      */
     public T delete(T entity) {
-        em.remove(entity);
+        em.remove(em.merge(entity));
         return entity;
     }
 
