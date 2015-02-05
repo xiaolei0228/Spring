@@ -37,13 +37,12 @@ public class BaseServiceTest {
 
     @Test
     public void update() {
-        Function function = new Function();
-        function.setId(21L);
+        Function function = (Function) baseService.findById(Function.class, 2L);
         function.setName("测试功能_修改");
         //function.setEname("testFunc_修改");
         //function.setDescription("描述... 修改");
 
-        //baseService.update(function);
+        baseService.update(function);
     }
 
 
