@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -28,5 +29,21 @@ public class UserServiceTest {
             u.setSex(2);
             userService.save(u);
         }
+    }
+
+    @Test
+    public void findList() {
+        List<User> userList = userService.findList();
+        for (User user : userList) {
+            System.out.println(user.getName());
+        }
+    }
+
+    @Test
+    public void update() {
+        User u = new User();
+        u.setId(8L);
+        u.setMobile("123456798");
+        userService.update(u);
     }
 }

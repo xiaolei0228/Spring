@@ -30,4 +30,15 @@ public class UserServiceImpl implements IUserService {
     public List<User> findList() {
         return userDao.findList();
     }
+
+    public User update(User user) {
+        List<User> userList = userDao.findList();
+        for (User u : userList) {
+            System.out.println(u.getMobile());
+        }
+        userDao.update(user);
+        return user;
+    }
+
+
 }

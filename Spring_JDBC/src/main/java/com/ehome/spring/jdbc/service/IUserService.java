@@ -13,4 +13,6 @@ public interface IUserService {
 
     List<User> findList();
 
+    User update(User user);
+
 }

@@ -3,9 +3,12 @@ package com.ehome.spring.jdbc.dao.impl;
 import com.ehome.spring.jdbc.dao.IUserDao;
 import com.ehome.spring.jdbc.module.User;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -38,17 +41,22 @@ public class UserDaoImpl implements IUserDao {
     }
 
     public List findList() {
-        return null;
-//        String sql = "select count(1) from t_user";
-//        return jdbcTemplate.query(sql, new RowMapper() {
-//            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                User u = new User();
-//                u.setId(rs.getLong("id"));
-//                u.setName(rs.getString("name"));
-//                u.setSex(rs.getInt("sex"));
-//                u.setMobile(rs.getString("mobile"));
-//                return u;
-//            }
-//        });
+        String sql = "select * from t_user";
+        return jdbcTemplate.query(sql, new RowMapper() {
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User u = new User();
+                u.setId(rs.getLong("id"));
+                u.setName(rs.getString("name"));
+                u.setSex(rs.getInt("sex"));
+                u.setMobile(rs.getString("mobile"));
+                return u;
+            }
+        });
+    }
+
+    public User update(User user) {
+        String sql = "update t_user set mobile=? where id=?";
+        jdbcTemplate.update(sql, user.getMobile(), user.getId());
+        return user;
     }
 }

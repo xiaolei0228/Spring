@@ -13,4 +13,6 @@ public interface IUserDao {
     User save(User user);
 
     List findList();
+
+    User update(User user);
 }
