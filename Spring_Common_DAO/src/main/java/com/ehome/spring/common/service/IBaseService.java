@@ -1,13 +1,11 @@
 package com.ehome.spring.common.service;
 
-import com.ehome.spring.common.module.BaseEntity;
-
 import java.io.Serializable;
 
 /**
  * Created by haoxiaolei on 2015-01-27 17:30
  */
-public interface IBaseService<T extends BaseEntity, PK extends Serializable> {
+public interface IBaseService<T, PK extends Serializable> {
 
     /**
      * 保存

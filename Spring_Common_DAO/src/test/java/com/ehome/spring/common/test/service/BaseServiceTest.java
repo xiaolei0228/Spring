@@ -43,7 +43,7 @@ public class BaseServiceTest {
         //function.setEname("testFunc_修改");
         //function.setDescription("描述... 修改");
 
-        baseService.update(function);
+        //baseService.update(function);
     }
 
 
