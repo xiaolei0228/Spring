@@ -44,7 +44,7 @@ public interface IBaseService<T, PK extends Serializable> {
     T delete(T entity);
 
     /**
-     * 根据主键起查询对象
+     * 根据主键查询对象
      *
      * @param entityClass 对象的class
      * @param pk          主键

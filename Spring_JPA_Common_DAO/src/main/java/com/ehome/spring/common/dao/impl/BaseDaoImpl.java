@@ -65,7 +65,7 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
     }
 
     /**
-     * 根据主键起查询对象
+     * 根据主键查询对象
      *
      * @param entityClass 对象的class
      * @param pk          主键
