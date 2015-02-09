@@ -1,5 +1,7 @@
 package com.ehome.spring.hibernate.module;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "t_function")
+@DynamicUpdate(value = true)
 public class Function implements Serializable {
     private Long id;
     private String name;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by haoxiaolei on 2015-01-27 17:31
@@ -35,8 +36,10 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @return 保存后的对象集合
      */
-    public Iterable<T> save(Iterable<T> entities) {
-        return baseDao.save(entities);
+    public Collection<T> save(Collection<T> entities) {
+        if (entities != null && entities.size() > 0) {
+            return baseDao.save(entities);
+        } else return null;
     }
 
     /**
@@ -51,15 +54,28 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     }
 
     /**
+     * 批量更新
+     *
+     * @param entities 对象集合
+     *
+     * @return 更新后的对象集合
+     */
+    public Collection<T> update(Collection<T> entities) {
+        if (entities != null && entities.size() > 0) {
+            return baseDao.update(entities);
+        } else return null;
+    }
+
+    /**
      * 删除
      *
      * @param entity 要删除的对象
      *
      * @return 返回删除的对象
      */
-    public T delete(T entity) {
-        return baseDao.delete(entity);
-    }
+    //public T delete(T entity) {
+    //    return baseDao.delete(entity);
+    //}
 
     /**
      * 根据主键查询对象

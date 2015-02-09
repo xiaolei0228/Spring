@@ -1,15 +1,22 @@
 package com.ehome.spring.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by haoxiaolei on 2015-01-27 16:35
  */
 public abstract interface IBaseDao<T, PK extends Serializable> {
-    public T save(T entity);
+    T save(T entity);
 
-    public T get(Class<T> c, PK pk);
+    Collection<T> save(Collection<T> entities);
 
-    public List<T> getAllList(Class<T> c);
+    T update(T entity);
+
+    Collection<T> update(Collection<T> entities);
+
+    List<T> getAllList(Class<T> c);
+
+    T findById(Class<T> entityClass, PK pk);
 }

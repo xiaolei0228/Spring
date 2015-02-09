@@ -1,6 +1,7 @@
 package com.ehome.spring.hibernate.service;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by haoxiaolei on 2015-01-27 17:30
@@ -23,7 +24,7 @@ public interface IBaseService<T, PK extends Serializable> {
      *
      * @return 保存后的对象集合
      */
-    Iterable<T> save(Iterable<T> entities);
+    Collection<T> save(Collection<T> entities);
 
     /**
      * 更新
@@ -35,13 +36,22 @@ public interface IBaseService<T, PK extends Serializable> {
     T update(T enitty);
 
     /**
+     * 批量更新
+     *
+     * @param entities 对象集合
+     *
+     * @return 更新后的对象集合
+     */
+    Collection<T> update(Collection<T> entities);
+
+    /**
      * 删除
      *
      * @param entity 要删除的对象
      *
      * @return 返回删除的对象
      */
-    T delete(T entity);
+    //T delete(T entity);
 
     /**
      * 根据主键查询对象
@@ -52,4 +62,6 @@ public interface IBaseService<T, PK extends Serializable> {
      * @return 对象实体
      */
     T findById(Class<T> entityClass, PK pk);
+
+
 }
