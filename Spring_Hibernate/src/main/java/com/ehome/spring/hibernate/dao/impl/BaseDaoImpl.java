@@ -49,8 +49,7 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
     }
 
     public T update(T entity) {
-        //getSession().update(entity);
-        getSession().merge(entity);
+        getSession().update(entity);
         return entity;
     }
 

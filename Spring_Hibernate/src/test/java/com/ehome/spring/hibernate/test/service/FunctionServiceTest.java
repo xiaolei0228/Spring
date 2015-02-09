@@ -48,9 +48,9 @@ public class FunctionServiceTest {
 
     @Test
     public void update() {
-        //Function function = funcService.findById(Function.class, 9L);
-        Function function = new Function();
-        function.setId(8L);
+        Function function = funcService.findById(Function.class, 7L);
+        //Function function = new Function();
+        //function.setId(7L);
         function.setName("测试功能_修改");
 
         funcService.update(function);
