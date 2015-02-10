@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @version V1.0
@@ -27,8 +28,8 @@ public class UserServiceImpl implements IUserService {
         return userDao.save(user);
     }
 
-    public List<User> findList() {
-        return userDao.findList();
+    public int update(Map<String, Object> updateColumn, Map<String, Object> where) {
+        return userDao.update(updateColumn, where);
     }
 
     public User update(User user) {
@@ -38,6 +39,10 @@ public class UserServiceImpl implements IUserService {
         }
         userDao.update(user);
         return user;
+    }
+
+    public List<User> findList() {
+        return userDao.findList();
     }
 
 

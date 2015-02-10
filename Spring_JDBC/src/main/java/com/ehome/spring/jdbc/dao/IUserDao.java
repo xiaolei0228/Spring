@@ -3,16 +3,25 @@ package com.ehome.spring.jdbc.dao;
 import com.ehome.spring.jdbc.module.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by haoxiaolei on 2014/6/13 0013.
  */
 public interface IUserDao {
-    public User getById(Long id);
 
     User save(User user);
 
-    List findList();
+    /**
+     * 动态更新字段
+     *  @param updateColumn 要更新的字段
+     * @param where        where条件
+     */
+    int update(Map<String, Object> updateColumn, Map<String, Object> where);
 
     User update(User user);
+
+    List findList();
+
+    User findById(Long id);
 }

@@ -7,7 +7,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Administrator
@@ -22,14 +24,26 @@ public class UserServiceTest {
 
     @Test
     public void save() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             User u = new User();
             u.setName("test_" + i);
-            u.setMobile("100" + i);
-            u.setSex(2);
-            userService.save(u);
+            //u.setMobile("100" + i);
+            //u.setSex(2);
+            User user = userService.save(u);
+            System.out.println(user.getId());
         }
     }
+
+    @Test
+    public void update() {
+        Map<String, Object> updateColumn = new HashMap<>();
+        updateColumn.put("mobile", "110");
+        Map<String, Object> where = new HashMap<>();
+        where.put("name", "aa");
+        where.put("sex", 0);
+        userService.update(updateColumn, where);
+    }
+
 
     @Test
     public void findList() {
@@ -39,11 +53,4 @@ public class UserServiceTest {
         }
     }
 
-    @Test
-    public void update() {
-        User u = new User();
-        u.setId(8L);
-        u.setMobile("123456798");
-        userService.update(u);
-    }
 }
