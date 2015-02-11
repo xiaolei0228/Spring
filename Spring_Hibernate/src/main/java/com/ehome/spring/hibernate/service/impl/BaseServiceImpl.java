@@ -2,11 +2,14 @@ package com.ehome.spring.hibernate.service.impl;
 
 import com.ehome.spring.hibernate.dao.IBaseDao;
 import com.ehome.spring.hibernate.service.IBaseService;
+import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by haoxiaolei on 2015-01-27 17:31
@@ -87,6 +90,14 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      */
     public T findById(Class<T> entityClass, PK pk) {
         return baseDao.findById(entityClass, pk);
+    }
+
+    public List<T> findList(DetachedCriteria detachedCriteria) {
+        return baseDao.findList(detachedCriteria);
+    }
+
+    public List<T> findList(DetachedCriteria detachedCriteria, Pager pager) {
+        return baseDao.findList(detachedCriteria, pager);
     }
 
 

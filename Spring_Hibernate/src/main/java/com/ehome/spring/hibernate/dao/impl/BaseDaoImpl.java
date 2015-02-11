@@ -1,8 +1,12 @@
 package com.ehome.spring.hibernate.dao.impl;
 
 import com.ehome.spring.hibernate.dao.IBaseDao;
+import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -62,8 +66,23 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return entities;
     }
 
-    public List<T> getAllList(Class<T> c) {
-        return null;
+    public List<T> findList(DetachedCriteria detachedCriteria) {
+        Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
+        return criteria.list();
+    }
+
+    public List<T> findList(DetachedCriteria detachedCriteria, Pager pager) {
+        // 查询
+        Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
+        criteria.setFirstResult(pager.getStart());
+        criteria.setMaxResults(pager.getPageSize());
+        List resultList = criteria.list();
+
+        // 统计总记录数
+        criteria.setProjection(Projections.rowCount());
+        pager.setTotalRow(Integer.valueOf(criteria.uniqueResult().toString()));
+
+        return resultList;
     }
 
     public T findById(Class<T> entityClass, PK pk) {

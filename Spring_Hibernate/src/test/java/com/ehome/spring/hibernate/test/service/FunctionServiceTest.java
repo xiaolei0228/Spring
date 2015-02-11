@@ -1,8 +1,11 @@
 package com.ehome.spring.hibernate.test.service;
 
 import com.ehome.spring.hibernate.module.Function;
-import com.ehome.spring.hibernate.service.IBaseService;
 import com.ehome.spring.hibernate.service.IFunctionService;
+import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -79,6 +82,26 @@ public class FunctionServiceTest {
     public void findById() {
         Function function = funcService.findById(Function.class, 11L);
         System.out.println(function.getName());
+    }
+
+    @Test
+    public void findList() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
+        dc.add(Restrictions.like("name", "%修改%"));
+        List<Function> functionList = funcService.findList(dc);
+        System.out.println(functionList.size());
+    }
+
+    @Test
+    public void findListPager() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
+        dc.add(Restrictions.like("name", "%修改%"));
+        Pager pager = new Pager();
+        pager.setPageSize(2);
+        List<Function> functionList = funcService.findList(dc, pager);
+        System.out.println("返回行数：" + functionList.size());
+        System.out.println("总页面数：" + pager.getTotalPage());
+        System.out.println("总行数：" + pager.getTotalRow());
     }
 
 

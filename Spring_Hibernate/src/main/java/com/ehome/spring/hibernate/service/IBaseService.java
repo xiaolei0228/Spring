@@ -1,7 +1,11 @@
 package com.ehome.spring.hibernate.service;
 
+import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.criterion.DetachedCriteria;
+
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by haoxiaolei on 2015-01-27 17:30
@@ -63,5 +67,8 @@ public interface IBaseService<T, PK extends Serializable> {
      */
     T findById(Class<T> entityClass, PK pk);
 
+    List<T> findList(DetachedCriteria detachedCriteria);
+
+    List<T> findList(DetachedCriteria detachedCriteria, Pager pager);
 
 }

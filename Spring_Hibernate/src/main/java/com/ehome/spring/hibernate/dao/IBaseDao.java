@@ -1,5 +1,8 @@
 package com.ehome.spring.hibernate.dao;
 
+import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.criterion.DetachedCriteria;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +19,9 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
 
     Collection<T> update(Collection<T> entities);
 
-    List<T> getAllList(Class<T> c);
+    List<T> findList(DetachedCriteria detachedCriteria);
+
+    List<T> findList(DetachedCriteria detachedCriteria, Pager pager);
 
     T findById(Class<T> entityClass, PK pk);
 }
