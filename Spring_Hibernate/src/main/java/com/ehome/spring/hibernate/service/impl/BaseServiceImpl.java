@@ -48,12 +48,12 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     /**
      * 更新
      *
-     * @param enitty 对象实体
+     * @param entity 对象实体
      *
      * @return 更新后的对象
      */
-    public T update(T enitty) {
-        return baseDao.update(enitty);
+    public T update(T entity) {
+        return baseDao.update(entity);
     }
 
     /**
@@ -85,9 +85,60 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @param entityClass 要删除的对象的类型
      * @param id          对象主键
+     *
+     * @return 删除的对象
      */
-    public void delete(Class<T> entityClass, PK id) {
-        baseDao.deleteById(entityClass, id);
+    public T delete(Class<T> entityClass, PK id) {
+        return baseDao.delete(entityClass, id);
+    }
+
+    /**
+     * 根据条件删除对象集合
+     *
+     * @param entityClass      要删除的对象的类型
+     * @param detachedCriteria 删除条件
+     *
+     * @return 删除的对象集合
+     */
+    public List<T> delete(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.delete(entityClass, detachedCriteria);
+    }
+
+    /**
+     * 根据条件查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.findList(entityClass, detachedCriteria);
+    }
+
+    /**
+     * 根据条件分页查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     * @param pager            分页对象
+     *
+     * @return 对象集合
+     */
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
+        return baseDao.findList(entityClass, detachedCriteria, pager);
+    }
+
+    /**
+     * 根据条件查询条件内的所有对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
+    public List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.findAll(entityClass, detachedCriteria);
     }
 
     /**
@@ -102,17 +153,16 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
         return baseDao.findById(entityClass, pk);
     }
 
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        return baseDao.findList(entityClass, detachedCriteria);
+    /**
+     * 根据主键批量查询对象
+     *
+     * @param entityClass 对象的class
+     * @param idList      主键集合
+     *
+     * @return 对象实体
+     */
+    public List<T> findByIds(Class<T> entityClass, List<PK> idList) {
+        return baseDao.findByIds(entityClass, idList);
     }
-
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
-        return baseDao.findList(entityClass, detachedCriteria, pager);
-    }
-
-    public List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        return baseDao.findAll(entityClass, detachedCriteria);
-    }
-
 
 }

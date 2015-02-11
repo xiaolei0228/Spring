@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,12 +41,25 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         getSession().clear();
     }
 
-
+    /**
+     * 保存
+     *
+     * @param entity 对象实体
+     *
+     * @return 保存后的对象
+     */
     public T save(T entity) {
         getSession().save(entity);
         return entity;
     }
 
+    /**
+     * 批量保存
+     *
+     * @param entities 对象集合
+     *
+     * @return 保存后的对象集合
+     */
     public Collection<T> save(Collection<T> entities) {
         for (T entity : entities) {
             getSession().save(entity);
@@ -52,11 +67,25 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return entities;
     }
 
+    /**
+     * 更新
+     *
+     * @param entity 对象实体
+     *
+     * @return 更新后的对象
+     */
     public T update(T entity) {
         getSession().update(entity);
         return entity;
     }
 
+    /**
+     * 批量更新
+     *
+     * @param entities 对象集合
+     *
+     * @return 更新后的对象集合
+     */
     public Collection<T> update(Collection<T> entities) {
         if (entities != null && entities.size() > 0) {
             for (T entity : entities) {
@@ -66,26 +95,71 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return entities;
     }
 
+    /**
+     * 删除
+     *
+     * @param entity 要删除的对象
+     *
+     * @return 返回删除的对象
+     */
     public T delete(T entity) {
         getSession().delete(entity);
         return entity;
     }
 
-    public void deleteById(Class<T> entityClass, PK pk) {
+    /**
+     * 根据Id删除对象
+     *
+     * @param entityClass 要删除的对象的类型
+     * @param pk          对象主键
+     *
+     * @return 删除的对象
+     */
+    public T delete(Class<T> entityClass, PK pk) {
         T obj = findById(entityClass, pk);
-        delete(obj);
+        return delete(obj);
     }
 
-    public void delete(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+    /**
+     * 根据条件删除对象集合
+     *
+     * @param entityClass      要删除的对象的类型
+     * @param detachedCriteria 删除条件
+     *
+     * @return 删除的对象集合
+     */
+    public List<T> delete(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        List<T> deletedList = new ArrayList<>();
         Criteria criteria = getCriteria(entityClass, detachedCriteria);
-        //criteria.
+        List list = criteria.list();
+        for (Object obj : list) {
+            deletedList.add(delete((T) obj));
+        }
+        return deletedList;
     }
 
+    /**
+     * 根据条件查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
     public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
         Criteria criteria = getCriteria(entityClass, detachedCriteria);
         return criteria.list();
     }
 
+    /**
+     * 根据条件分页查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     * @param pager            分页对象
+     *
+     * @return 对象集合
+     */
     public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
         Criteria criteria = getCriteria(entityClass, detachedCriteria);
         // 查询
@@ -100,12 +174,42 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return resultList;
     }
 
+    /**
+     * 根据条件查询条件内的所有对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
     public List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria) {
         return findList(entityClass, detachedCriteria);
     }
 
+    /**
+     * 根据主键查询对象
+     *
+     * @param entityClass 对象的class
+     * @param pk          主键
+     *
+     * @return 对象实体
+     */
     public T findById(Class<T> entityClass, PK pk) {
         return (T) getSession().get(entityClass, pk);
+    }
+
+    /**
+     * 根据主键批量查询对象
+     *
+     * @param entityClass 对象的class
+     * @param idList      主键集合
+     *
+     * @return 对象实体
+     */
+    public List<T> findByIds(Class<T> entityClass, List<PK> idList) {
+        Criteria criteria = getSession().createCriteria(entityClass);
+        criteria.add(Restrictions.in("id", idList));
+        return criteria.list();
     }
 
 

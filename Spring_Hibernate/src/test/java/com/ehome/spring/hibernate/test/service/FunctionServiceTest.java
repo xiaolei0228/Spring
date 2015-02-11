@@ -83,9 +83,30 @@ public class FunctionServiceTest {
     }
 
     @Test
+    public void deleteByCriteria() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
+        dc.add(Restrictions.isNull("ename"));
+        List<Function> functionList = funcService.delete(Function.class, dc);
+        for (Function function : functionList) {
+            System.out.println(function.getName());
+        }
+    }
+
+    @Test
     public void findById() {
         Function function = funcService.findById(Function.class, 11L);
         System.out.println(function.getName());
+    }
+
+    @Test
+    public void findByIdList() {
+        List<Long> idList = new ArrayList<>();
+        idList.add(1L);
+        idList.add(2L);
+        List<Function> functionList = funcService.findById(Function.class, idList);
+        for (Function function : functionList) {
+            System.out.println(function.getName());
+        }
     }
 
     @Test

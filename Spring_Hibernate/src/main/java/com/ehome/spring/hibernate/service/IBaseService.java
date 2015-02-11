@@ -1,6 +1,5 @@
 package com.ehome.spring.hibernate.service;
 
-import com.ehome.spring.hibernate.module.Function;
 import com.ehome.spring.hibernate.util.Pager;
 import org.hibernate.criterion.DetachedCriteria;
 
@@ -34,11 +33,11 @@ public interface IBaseService<T, PK extends Serializable> {
     /**
      * 更新
      *
-     * @param enitty 对象实体
+     * @param entity 对象实体
      *
      * @return 更新后的对象
      */
-    T update(T enitty);
+    T update(T entity);
 
     /**
      * 批量更新
@@ -63,8 +62,51 @@ public interface IBaseService<T, PK extends Serializable> {
      *
      * @param entityClass 要删除的对象的类型
      * @param id          对象主键
+     *
+     * @return 删除的对象
      */
-    void delete(Class<T> entityClass, PK id);
+    T delete(Class<T> entityClass, PK id);
+
+    /**
+     * 根据条件删除对象集合
+     *
+     * @param entityClass      要删除的对象的类型
+     * @param detachedCriteria 删除条件
+     *
+     * @return 删除的对象集合
+     */
+    List<T> delete(Class<T> entityClass, DetachedCriteria detachedCriteria);
+
+    /**
+     * 根据条件查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
+
+    /**
+     * 根据条件分页查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     * @param pager            分页对象
+     *
+     * @return 对象集合
+     */
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
+
+    /**
+     * 根据条件查询条件内的所有对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件
+     *
+     * @return 对象集合
+     */
+    List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
     /**
      * 根据主键查询对象
@@ -76,10 +118,13 @@ public interface IBaseService<T, PK extends Serializable> {
      */
     T findById(Class<T> entityClass, PK pk);
 
-    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
-
-    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
-
-    List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria);
-
+    /**
+     * 根据主键批量查询对象
+     *
+     * @param entityClass 对象的class
+     * @param idList      主键集合
+     *
+     * @return 对象实体
+     */
+    List<T> findByIds(Class<T> entityClass, List<PK> idList);
 }
