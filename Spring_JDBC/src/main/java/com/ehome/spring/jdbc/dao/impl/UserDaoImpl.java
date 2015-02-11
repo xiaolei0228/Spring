@@ -48,18 +48,22 @@ public class UserDaoImpl implements IUserDao {
     public int update(Map<String, Object> updateColumn, Map<String, Object> where) {
         List paramList = new ArrayList();
         StringBuffer sql = new StringBuffer("update t_user set ");
-        for (Map.Entry<String, Object> entry : updateColumn.entrySet()) {
-            sql.append(entry.getKey()).append("=?,");
-            paramList.add(entry.getValue());
+        if (updateColumn != null && updateColumn.size() > 0) {
+            for (Map.Entry<String, Object> entry : updateColumn.entrySet()) {
+                sql.append(entry.getKey()).append("=?,");
+                paramList.add(entry.getValue());
+            }
+            sql = sql.delete(sql.length() - 1, sql.length());
         }
-        sql = sql.delete(sql.length() - 1, sql.length());
 
-        sql.append(" where ");
-        for (Map.Entry<String, Object> entry : where.entrySet()) {
-            sql.append(entry.getKey()).append("=? and ");
-            paramList.add(entry.getValue());
+        if (where != null && where.size() > 0) {
+            sql.append(" where ");
+            for (Map.Entry<String, Object> entry : where.entrySet()) {
+                sql.append(entry.getKey()).append("=? and ");
+                paramList.add(entry.getValue());
+            }
+            sql = sql.delete(sql.lastIndexOf(" and "), sql.length());
         }
-        sql = sql.delete(sql.lastIndexOf(" and "), sql.length());
 
         System.out.println(sql);
 
