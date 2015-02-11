@@ -1,5 +1,6 @@
 package com.ehome.spring.hibernate.service;
 
+import com.ehome.spring.hibernate.module.Function;
 import com.ehome.spring.hibernate.util.Pager;
 import org.hibernate.criterion.DetachedCriteria;
 
@@ -55,7 +56,15 @@ public interface IBaseService<T, PK extends Serializable> {
      *
      * @return 返回删除的对象
      */
-    //T delete(T entity);
+    T delete(T entity);
+
+    /**
+     * 根据Id删除对象
+     *
+     * @param entityClass 要删除的对象的类型
+     * @param id          对象主键
+     */
+    void delete(Class<T> entityClass, PK id);
 
     /**
      * 根据主键查询对象

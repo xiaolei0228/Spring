@@ -19,6 +19,10 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
 
     Collection<T> update(Collection<T> entities);
 
+    T delete(T entity);
+
+    void deleteById(Class<T> entityClass, PK pk);
+
     List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
     List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);

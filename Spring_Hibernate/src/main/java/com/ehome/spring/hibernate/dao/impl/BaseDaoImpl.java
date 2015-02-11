@@ -66,24 +66,29 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return entities;
     }
 
+    public T delete(T entity) {
+        getSession().delete(entity);
+        return entity;
+    }
+
+    public void deleteById(Class<T> entityClass, PK pk) {
+        T obj = findById(entityClass, pk);
+        delete(obj);
+    }
+
+    public void delete(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        Criteria criteria = getCriteria(entityClass, detachedCriteria);
+        //criteria.
+    }
+
     public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        Criteria criteria;
-        if (detachedCriteria != null) {
-            criteria = detachedCriteria.getExecutableCriteria(getSession());
-        } else {
-            criteria = getSession().createCriteria(entityClass);
-        }
+        Criteria criteria = getCriteria(entityClass, detachedCriteria);
         return criteria.list();
     }
 
     public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
-        Criteria criteria;
+        Criteria criteria = getCriteria(entityClass, detachedCriteria);
         // 查询
-        if (detachedCriteria != null) {
-            criteria = detachedCriteria.getExecutableCriteria(getSession());
-        } else {
-            criteria = getSession().createCriteria(entityClass);
-        }
         criteria.setFirstResult(pager.getStart());
         criteria.setMaxResults(pager.getPageSize());
         List resultList = criteria.list();
@@ -101,5 +106,19 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
 
     public T findById(Class<T> entityClass, PK pk) {
         return (T) getSession().get(entityClass, pk);
+    }
+
+
+
+
+    private Criteria getCriteria(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        Criteria criteria;
+        if (detachedCriteria != null) {
+            criteria = detachedCriteria.getExecutableCriteria(getSession());
+        } else {
+            criteria = getSession().createCriteria(entityClass);
+        }
+
+        return criteria;
     }
 }

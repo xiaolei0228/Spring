@@ -76,9 +76,19 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @return 返回删除的对象
      */
-    //public T delete(T entity) {
-    //    return baseDao.delete(entity);
-    //}
+    public T delete(T entity) {
+        return baseDao.delete(entity);
+    }
+
+    /**
+     * 根据Id删除对象
+     *
+     * @param entityClass 要删除的对象的类型
+     * @param id          对象主键
+     */
+    public void delete(Class<T> entityClass, PK id) {
+        baseDao.deleteById(entityClass, id);
+    }
 
     /**
      * 根据主键查询对象

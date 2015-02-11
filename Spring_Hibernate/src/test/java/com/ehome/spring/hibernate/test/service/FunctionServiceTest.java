@@ -73,8 +73,13 @@ public class FunctionServiceTest {
     @Test
     public void delete() {
         Function function = new Function();
-        function.setId(5L);
-        //funcService.delete(function);
+        function.setId(7L);
+        funcService.delete(function);
+    }
+
+    @Test
+    public void deleteById() {
+        funcService.delete(Function.class, 11L);
     }
 
     @Test
