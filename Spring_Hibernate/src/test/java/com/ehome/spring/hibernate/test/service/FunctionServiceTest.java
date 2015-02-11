@@ -120,7 +120,8 @@ public class FunctionServiceTest {
     @Test
     public void findList() {
         DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
-        dc.add(Restrictions.like("name", "%修改%"));
+        dc.add(Restrictions.like("name", "%2%"));
+        dc.add(Restrictions.in("id", new Object[]{1L, 2L, 3L, 4L}));
         List<Function> functionList = funcService.findList(Function.class, dc);
         System.out.println(functionList.size());
     }
