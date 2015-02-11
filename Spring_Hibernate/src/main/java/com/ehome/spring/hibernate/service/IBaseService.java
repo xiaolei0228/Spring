@@ -67,8 +67,10 @@ public interface IBaseService<T, PK extends Serializable> {
      */
     T findById(Class<T> entityClass, PK pk);
 
-    List<T> findList(DetachedCriteria detachedCriteria);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
-    List<T> findList(DetachedCriteria detachedCriteria, Pager pager);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
+
+    List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
 }

@@ -66,14 +66,24 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         return entities;
     }
 
-    public List<T> findList(DetachedCriteria detachedCriteria) {
-        Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        Criteria criteria;
+        if (detachedCriteria != null) {
+            criteria = detachedCriteria.getExecutableCriteria(getSession());
+        } else {
+            criteria = getSession().createCriteria(entityClass);
+        }
         return criteria.list();
     }
 
-    public List<T> findList(DetachedCriteria detachedCriteria, Pager pager) {
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
+        Criteria criteria;
         // 查询
-        Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
+        if (detachedCriteria != null) {
+            criteria = detachedCriteria.getExecutableCriteria(getSession());
+        } else {
+            criteria = getSession().createCriteria(entityClass);
+        }
         criteria.setFirstResult(pager.getStart());
         criteria.setMaxResults(pager.getPageSize());
         List resultList = criteria.list();
@@ -83,6 +93,10 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         pager.setTotalRow(Integer.valueOf(criteria.uniqueResult().toString()));
 
         return resultList;
+    }
+
+    public List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return findList(entityClass, detachedCriteria);
     }
 
     public T findById(Class<T> entityClass, PK pk) {

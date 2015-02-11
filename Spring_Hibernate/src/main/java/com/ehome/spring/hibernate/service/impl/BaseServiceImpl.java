@@ -92,12 +92,16 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
         return baseDao.findById(entityClass, pk);
     }
 
-    public List<T> findList(DetachedCriteria detachedCriteria) {
-        return baseDao.findList(detachedCriteria);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.findList(entityClass, detachedCriteria);
     }
 
-    public List<T> findList(DetachedCriteria detachedCriteria, Pager pager) {
-        return baseDao.findList(detachedCriteria, pager);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
+        return baseDao.findList(entityClass, detachedCriteria, pager);
+    }
+
+    public List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.findAll(entityClass, detachedCriteria);
     }
 
 

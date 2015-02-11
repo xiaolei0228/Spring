@@ -19,9 +19,11 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
 
     Collection<T> update(Collection<T> entities);
 
-    List<T> findList(DetachedCriteria detachedCriteria);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
-    List<T> findList(DetachedCriteria detachedCriteria, Pager pager);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
+
+    List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria);
 
     T findById(Class<T> entityClass, PK pk);
 }
