@@ -3,6 +3,7 @@ package com.ehome.spring.hibernate.dao.impl;
 import com.ehome.spring.hibernate.dao.IBaseDao;
 import com.ehome.spring.hibernate.util.Pager;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -136,6 +137,20 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
             deletedList.add(delete((T) obj));
         }
         return deletedList;
+    }
+
+    /**
+     * 根据某个字段查询
+     *
+     * @param entityClass 要删除的对象的类型
+     * @param name        字段名称
+     * @param value       字段值
+     */
+    public List<T> find(Class<T> entityClass, String name, String value) {
+        String sql = "from " + entityClass.getSimpleName() + " where " + name + "=:value";
+        Query query = getSession().createQuery(sql);
+        query.setParameter("value", value);
+        return query.list();
     }
 
     /**

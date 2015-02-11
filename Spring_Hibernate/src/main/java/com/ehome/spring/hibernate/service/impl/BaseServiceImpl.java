@@ -105,6 +105,17 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     }
 
     /**
+     * 根据某个字段查询
+     *
+     * @param entityClass 要删除的对象的类型
+     * @param name        字段名称
+     * @param value       字段值
+     */
+    public List<T> find(Class<T> entityClass, String name, String value) {
+        return baseDao.find(entityClass, name, value);
+    }
+
+    /**
      * 根据条件查询对象集合
      *
      * @param entityClass      要查询的对象的类型

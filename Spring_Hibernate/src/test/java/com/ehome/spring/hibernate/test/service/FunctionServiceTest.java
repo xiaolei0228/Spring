@@ -93,6 +93,14 @@ public class FunctionServiceTest {
     }
 
     @Test
+    public void find() {
+        List<Function> funList = funcService.find(Function.class, "name", "测试功能_3");
+        for (Function fun : funList) {
+            System.out.println(fun.getEname() + "---" + fun.getDescription());
+        }
+    }
+
+    @Test
     public void findById() {
         Function function = funcService.findById(Function.class, 11L);
         System.out.println(function.getName());
@@ -103,7 +111,7 @@ public class FunctionServiceTest {
         List<Long> idList = new ArrayList<>();
         idList.add(1L);
         idList.add(2L);
-        List<Function> functionList = funcService.findById(Function.class, idList);
+        List<Function> functionList = funcService.findByIds(Function.class, idList);
         for (Function function : functionList) {
             System.out.println(function.getName());
         }
