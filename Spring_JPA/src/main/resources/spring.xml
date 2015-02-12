@@ -2,16 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
-        http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 告诉spring注解bean的目录 -->
     <context:component-scan base-package="com.ehome.spring.jpa"/>
@@ -26,48 +22,5 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <!-- JPA管理工厂 -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="myPersistenceUnit"/>
-    </bean>
-
-    <!-- JPA事务管理器 -->
-    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-    <!-- 配置事务的传播范围 -->
-    <tx:advice id="txAdvice" transaction-manager="txManager">
-        <!-- 定义方法的过滤规则 -->
-        <tx:attributes>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="insert*" propagation="REQUIRED"/>
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="modify*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="remove*" propagation="REQUIRED"/>
-
-            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="fetch*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="list*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="check*" propagation="SUPPORTS" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 配置事务的切入点 -->
-    <aop:config expose-proxy="true" proxy-target-class="true">
-        <aop:pointcut id="txPointcut" expression="execution(* com.ehome.spring.jpa.service..*.*(..))"/>
-        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
-    </aop:config>
-
-    <!-- Spring JPA启用扫描并自动创建代理的功能，只用在接口上继承框架提交的Repository,不需要有实现类
-        此配置和上面的配置是并行的，是两种方式 -->
-    <jpa:repositories base-package="com.ehome.spring.jpa.dao"
-                      entity-manager-factory-ref="entityManagerFactory"
-                      transaction-manager-ref="txManager"/>
-
-
-
+    <import resource="spring-tx.xml"/>
 </beans>
