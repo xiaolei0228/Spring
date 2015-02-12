@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.ehome.spring_web.module.User;
 import com.ehome.spring_web.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,15 @@ import java.util.Map;
 public class UserController {
     @Resource
     private UserService userService;
+
+    @RequestMapping("hello")
+    public String hello(Model model) {
+        User user = new User();
+        user.setName("单车上的理想");
+
+        model.addAttribute("user", user);
+        return "hello";
+    }
 
     /**
      * 简单参数，前端form里也得有对应的参数名称

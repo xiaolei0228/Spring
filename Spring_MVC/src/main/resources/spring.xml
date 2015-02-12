@@ -16,5 +16,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <import resource="spring-freemarker.xml"/>
 
 </beans>
