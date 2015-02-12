@@ -70,7 +70,7 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * 根据条件删除对象集合
      *
      * @param entityClass      要删除的对象的类型
-     * @param detachedCriteria 删除条件
+     * @param detachedCriteria 删除条件，如果为null，则删除全部
      *
      * @return 删除的对象集合
      */
@@ -89,7 +89,7 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * 根据条件查询对象集合
      *
      * @param entityClass      要查询的对象的类型
-     * @param detachedCriteria 查询条件
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
      *
      * @return 对象集合
      */
@@ -99,7 +99,7 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * 根据条件分页查询对象集合
      *
      * @param entityClass      要查询的对象的类型
-     * @param detachedCriteria 查询条件
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
      * @param pager            分页对象
      *
      * @return 对象集合
@@ -110,7 +110,7 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * 根据条件查询条件内的所有对象集合
      *
      * @param entityClass      要查询的对象的类型
-     * @param detachedCriteria 查询条件
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
      *
      * @return 对象集合
      */
@@ -135,4 +135,14 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * @return 对象实体
      */
     List<T> findByIds(Class<T> entityClass, List<PK> idList);
+
+    /**
+     * 统计总记录
+     *
+     * @param entityClass      对象的class
+     * @param detachedCriteria 条件，如果为null，则查询全部
+     *
+     * @return 总记录数量
+     */
+    Long count(Class<T> entityClass, DetachedCriteria detachedCriteria);
 }
