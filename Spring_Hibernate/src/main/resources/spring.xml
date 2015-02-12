@@ -2,16 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
-        http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 告诉spring注解bean的目录 -->
     <context:component-scan base-package="com.ehome.spring.hibernate"/>
@@ -27,86 +23,8 @@
     </mvc:annotation-driven>
 
     <!-- 数据源 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!-- 基本属性 -->
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&amp;characterEncoding=utf-8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-        <property name="defaultAutoCommit" value="false"/>  <!-- 把数据库的提交事务关闭，让spring来管理 -->
+    <import resource="spring-datasource.xml"/>
 
-        <!-- 配置初始化大小、最小、最大。通常来说，只需要修改initialSize、minIdle、maxActive。-->
-        <property name="initialSize" value="1"/>
-        <property name="minIdle" value="1"/>
-        <property name="maxActive" value="20"/>
-
-        <!-- 配置获取连接等待超时的时间， 单位：毫秒-->
-        <property name="maxWait" value="60000"/>
-
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接， 单位：毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="80000"/>
-
-        <!-- 配置一个连接在池中最小的生存时间， 单位：毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-
-        <!-- 向数据库发送一个查询请求 -->
-        <property name="validationQuery" value="SELECT 'x'"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
-
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
-        <!-- 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。-->
-        <property name="poolPreparedStatements" value="true"/>
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
-
-        <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat"/>
-    </bean>
-
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.ehome.spring.hibernate.module"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-            </props>
-        </property>
-    </bean>
-
-    <!-- hibernate事务管理器 -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <!-- 配置事务的传播范围 -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <!-- 定义方法的过滤规则 -->
-        <tx:attributes>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="insert*" propagation="REQUIRED"/>
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="create*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="modify*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="remove*" propagation="REQUIRED"/>
-
-            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="fetch*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="list*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="check*" propagation="SUPPORTS" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 配置事务的切入点 -->
-    <aop:config expose-proxy="true" proxy-target-class="true">
-        <aop:pointcut id="txPointcut" expression="execution(* com.ehome.spring.hibernate.service..*.*(..))"/>
-        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
-    </aop:config>
-
+    <import resource="spring-tx.xml"/>
 
 </beans>
