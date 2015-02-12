@@ -1,9 +1,7 @@
 package com.ehome.spring.hibernate.dao.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.ehome.spring.hibernate.dao.IBaseDao;
 import com.ehome.spring.hibernate.util.Pager;
-import jodd.util.ArraysUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -164,14 +162,7 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      * @return 对象集合
      */
     public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        // TODO: CriteriaImpl(com.ehome.spring.hibernate.module.Function:this[][name like %2%, id in (1, 2, 3, 4)])
         Criteria criteria = getCriteria(entityClass, detachedCriteria);
-        String where = criteria.toString();
-        where = where.replace("CriteriaImpl(" + entityClass.getName() + ":this[]", "");
-        where = where.substring(0, where.length() - 1);
-        List<String> whereList = JSON.parseArray("\"" + where + "\"", String.class);
-        System.out.println(where);
-
         return criteria.list();
     }
 
