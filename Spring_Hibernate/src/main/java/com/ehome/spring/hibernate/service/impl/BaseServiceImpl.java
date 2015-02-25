@@ -93,6 +93,17 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
     }
 
     /**
+     * 批量删除
+     *
+     * @param entities 对象集合
+     *
+     * @return 删除的对象集合
+     */
+    public List<T> delete(List<T> entities) {
+        return baseDao.delete(entities);
+    }
+
+    /**
      * 根据条件删除对象集合
      *
      * @param entityClass      要删除的对象的类型
