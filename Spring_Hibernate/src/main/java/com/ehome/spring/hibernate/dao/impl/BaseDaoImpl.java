@@ -122,6 +122,23 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
     }
 
     /**
+     * 批量删除
+     *
+     * @param entities 对象集合
+     *
+     * @return 删除的对象集合
+     */
+    public List<T> delete(List<T> entities) {
+        List<T> deletedList = new ArrayList<>();
+        if (entities != null && entities.size() > 0) {
+            for (T entity : entities) {
+                deletedList.add(delete(entity));
+            }
+        }
+        return deletedList;
+    }
+
+    /**
      * 根据条件删除对象集合
      *
      * @param entityClass      要删除的对象的类型

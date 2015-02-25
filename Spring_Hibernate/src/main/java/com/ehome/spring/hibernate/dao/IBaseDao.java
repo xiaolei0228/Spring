@@ -67,6 +67,15 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
     T delete(Class<T> entityClass, PK pk);
 
     /**
+     * 批量删除
+     *
+     * @param entities    对象集合
+     *
+     * @return 删除的对象集合
+     */
+    List<T> delete(List<T> entities);
+
+    /**
      * 根据条件删除对象集合
      *
      * @param entityClass      要删除的对象的类型
