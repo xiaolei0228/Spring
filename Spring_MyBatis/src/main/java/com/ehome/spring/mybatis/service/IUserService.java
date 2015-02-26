@@ -10,4 +10,5 @@ public interface IUserService extends IBaseService<User, Long> {
 
     int save(User user);
 
+    int update(User u);
 }

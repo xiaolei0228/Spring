@@ -19,7 +19,7 @@
 
     <!-- 使保存的后的对象中id有值，useGeneratedKeys="true" keyProperty="id" -->
     <insert id="save" parameterType="com.ehome.spring.mybatis.module.User" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user
+        inser into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -48,11 +48,30 @@
                 #{age,jdbcType=INTEGER},
             </if>
             <if test="birthday != null">
-                #{birthday,jdbcType=DATE},
+                #{birthday,jdbcType=TIMESTAMP},
             </if>
             <if test="address != null">
                 #{address,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
+
+    <update id="update" parameterType="com.ehome.spring.mybatis.module.User">
+        update t_user
+        <set>
+            <if test="name != null">
+                name = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age, jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday, jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                address = #{address, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id, jdbcType=BIGINT}
+    </update>
 </mapper>

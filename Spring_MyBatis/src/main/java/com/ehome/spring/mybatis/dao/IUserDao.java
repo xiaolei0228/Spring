@@ -9,4 +9,6 @@ public interface IUserDao {
 
     int save(User user);
 
+    int update(User user);
+
 }

@@ -32,4 +32,12 @@ public class UserServiceTest {
         System.out.println("result:" + result);
         System.out.println("id:" + u.getId());
     }
+
+    @Test
+    public void update() {
+        User u = new User();
+        u.setId(3L);
+        u.setName("aaa");
+        userService.update(u);
+    }
 }

@@ -23,4 +23,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements IUse
     public int save(User user) {
         return userDao.save(user);
     }
+
+    public int update(User u) {
+        return userDao.update(u);
+    }
 }
