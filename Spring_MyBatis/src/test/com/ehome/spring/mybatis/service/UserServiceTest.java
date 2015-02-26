@@ -28,6 +28,8 @@ public class UserServiceTest {
         u.setBirthday(new Date(478368000000L));
         u.setAddress("林州市");
 
-        userService.save(u);
+        int result = userService.save(u);
+        System.out.println("result:" + result);
+        System.out.println("id:" + u.getId());
     }
 }

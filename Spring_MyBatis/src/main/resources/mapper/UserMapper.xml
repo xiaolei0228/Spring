@@ -17,7 +17,8 @@
 
     <!-- id要与dao接口中的方法保持一致 -->
 
-    <insert id="save" parameterType="com.ehome.spring.mybatis.module.User">
+    <!-- 使保存的后的对象中id有值，useGeneratedKeys="true" keyProperty="id" -->
+    <insert id="save" parameterType="com.ehome.spring.mybatis.module.User" useGeneratedKeys="true" keyProperty="id">
         insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
