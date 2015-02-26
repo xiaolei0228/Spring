@@ -8,5 +8,6 @@ import com.ehome.spring.mybatis.module.User;
  */
 public interface IUserService extends IBaseService<User, Long> {
 
+    int save(User user);
 
 }

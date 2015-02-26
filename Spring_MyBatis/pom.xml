@@ -13,8 +13,10 @@
         <spring.version>4.1.4.RELEASE</spring.version>
         <springtest.version>4.1.4.RELEASE</springtest.version>
         <servletapi.version>3.1.0</servletapi.version>
+        <aspectjweaver.version>1.8.4</aspectjweaver.version>
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis-spring.version>1.2.1</mybatis-spring.version>
+        <mysql.version>5.1.31</mysql.version>
         <jodd.version>3.5.2</jodd.version>
         <fastjson.version>1.1.41</fastjson.version>
         <druid.version>1.0.7</druid.version>
@@ -46,6 +48,11 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servletapi.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
         </dependency>
 
         <!-- spring -->
@@ -80,6 +87,12 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
 
         <!-- fastjson -->

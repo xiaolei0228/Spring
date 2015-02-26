@@ -8,7 +8,7 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 -->
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_mybatis?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
         <property name="defaultAutoCommit" value="false"/>  <!-- 把数据库的提交事务关闭，让spring来管理 -->

@@ -25,6 +25,8 @@
     <!-- 数据源 -->
     <import resource="spring-datasource.xml"/>
 
+    <import resource="spring-mybatis.xml"/>
+
     <import resource="spring-tx.xml"/>
 
 </beans>

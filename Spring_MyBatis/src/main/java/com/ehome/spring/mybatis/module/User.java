@@ -1,14 +1,17 @@
 package com.ehome.spring.mybatis.module;
 
+import java.util.Date;
+
 /**
  * Created by haoxiaolei on 2015-02-13 11:09
  */
 public class User {
 
     private int id;
-    private String userName;
-    private String userAge;
-    private String userAddress;
+    private String name;
+    private int age;
+    private Date birthday;
+    private String address;
 
 
     public int getId() {
@@ -19,27 +22,35 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserAge() {
-        return userAge;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserAge(String userAge) {
-        this.userAge = userAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
