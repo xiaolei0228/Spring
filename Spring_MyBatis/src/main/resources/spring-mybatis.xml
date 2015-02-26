@@ -11,14 +11,14 @@
         <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
     </bean>
 
-    <bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg ref="sqlSessionFactory"/>
-    </bean>
-
     <!-- mybatis的dao与mapper文件自动映射 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.ehome.spring.mybatis.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <bean id="baseDao" class="com.ehome.spring.mybatis.dao.impl.BaseDaoImpl">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
 
