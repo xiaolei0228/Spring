@@ -119,11 +119,10 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      * 根据条件查询条件内的所有对象集合
      *
      * @param entityClass      要查询的对象的类型
-     * @param detachedCriteria 查询条件，如果为null，则查询全部
      *
      * @return 对象集合
      */
-    List<T> findAll(Class<T> entityClass, DetachedCriteria detachedCriteria);
+    List<T> findAll(Class<T> entityClass);
 
     /**
      * 根据主键查询对象

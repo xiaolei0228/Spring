@@ -3,8 +3,10 @@ package com.ehome.spring.hibernate.test.service;
 import com.ehome.spring.hibernate.module.Function;
 import com.ehome.spring.hibernate.service.IFunctionService;
 import com.ehome.spring.hibernate.util.Pager;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.internal.CriteriaImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -140,9 +142,7 @@ public class FunctionServiceTest {
 
     @Test
     public void findAll() {
-        DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
-        dc.add(Restrictions.like("name", "%修改%"));
-        List<Function> functionList = funcService.findAll(Function.class, dc);
+        List<Function> functionList = funcService.findAll(Function.class);
         System.out.println(functionList.size());
     }
 
