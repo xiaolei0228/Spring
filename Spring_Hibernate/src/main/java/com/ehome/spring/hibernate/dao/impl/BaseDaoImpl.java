@@ -6,14 +6,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.AliasToBeanResultTransformer;
-import org.hibernate.transform.ResultTransformer;
-import org.hibernate.transform.RootEntityResultTransformer;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -275,10 +272,10 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         if (propertyList != null && propertyList.size() > 0) {
             ProjectionList projectionList = Projections.projectionList();
             for (String prop : propertyList) {
-                projectionList.add(Projections.property(prop));
+                projectionList.add(Projections.property(prop).as(prop));
             }
             criteria.setProjection(projectionList);
-            criteria.setResultTransformer(new RootEntityResultTransformer(entityClass));
+            criteria.setResultTransformer(new AliasToBeanResultTransformer(entityClass));
         }
 
         return criteria;
