@@ -122,10 +122,15 @@ public class FunctionServiceTest {
     @Test
     public void findList() {
         DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
-        dc.add(Restrictions.like("name", "%2%"));
+        //dc.add(Restrictions.like("name", "%2%"));
         dc.add(Restrictions.in("id", new Object[]{1L, 2L, 3L, 4L}));
-        List<Function> functionList = funcService.findList(Function.class, dc);
-        System.out.println(functionList.size());
+        List<String> propertyList = new ArrayList<>();
+        propertyList.add("name");
+        propertyList.add("ename");
+        List<Function> functionList = funcService.findList(Function.class, dc, propertyList);
+        for (Function f : functionList) {
+            System.out.println(f.getName() + "---" + f.getEname());
+        }
     }
 
     @Test
@@ -134,7 +139,7 @@ public class FunctionServiceTest {
         dc.add(Restrictions.like("name", "%修改%"));
         Pager pager = new Pager();
         pager.setPageSize(2);
-        List<Function> functionList = funcService.findList(Function.class, dc, pager);
+        List<Function> functionList = funcService.findList(Function.class, dc, null, pager);
         System.out.println("返回行数：" + functionList.size());
         System.out.println("总页面数：" + pager.getTotalPage());
         System.out.println("总行数：" + pager.getTotalRow());

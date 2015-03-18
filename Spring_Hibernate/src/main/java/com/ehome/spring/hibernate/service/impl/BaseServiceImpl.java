@@ -131,11 +131,12 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList 查询指定的属性(字段)
      *
      * @return 对象集合
      */
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        return baseDao.findList(entityClass, detachedCriteria);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList) {
+        return baseDao.findList(entityClass, detachedCriteria, propertyList);
     }
 
     /**
@@ -143,12 +144,13 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList 查询指定的属性(字段)
      * @param pager            分页对象
      *
      * @return 对象集合
      */
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
-        return baseDao.findList(entityClass, detachedCriteria, pager);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList, Pager pager) {
+        return baseDao.findList(entityClass, detachedCriteria, propertyList, pager);
     }
 
     /**

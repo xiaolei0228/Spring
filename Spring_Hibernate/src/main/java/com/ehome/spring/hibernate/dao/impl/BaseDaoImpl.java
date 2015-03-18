@@ -6,9 +6,14 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.AliasToBeanResultTransformer;
+import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.RootEntityResultTransformer;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -148,7 +153,7 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      */
     public List<T> delete(Class<T> entityClass, DetachedCriteria detachedCriteria) {
         List<T> deletedList = new ArrayList<>();
-        Criteria criteria = getCriteria(entityClass, detachedCriteria);
+        Criteria criteria = getCriteria(entityClass, detachedCriteria, null);
         List list = criteria.list();
         for (Object obj : list) {
             deletedList.add(delete((T) obj));
@@ -175,11 +180,11 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
-     *
+     * @param propertyList 查询指定的属性(字段)
      * @return 对象集合
      */
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        Criteria criteria = getCriteria(entityClass, detachedCriteria);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList) {
+        Criteria criteria = getCriteria(entityClass, detachedCriteria, propertyList);
         return criteria.list();
     }
 
@@ -188,12 +193,13 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList 查询指定的属性(字段)
      * @param pager            分页对象
      *
      * @return 对象集合
      */
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
-        Criteria criteria = getCriteria(entityClass, detachedCriteria);
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList, Pager pager) {
+        Criteria criteria = getCriteria(entityClass, detachedCriteria, propertyList);
         // 查询
         criteria.setFirstResult(pager.getStart());
         criteria.setMaxResults(pager.getPageSize());
@@ -214,7 +220,7 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      * @return 对象集合
      */
     public List<T> findAll(Class<T> entityClass) {
-        return findList(entityClass, null);
+        return findList(entityClass, null, null);
     }
 
     /**
@@ -252,18 +258,27 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      * @return 总记录数量
      */
     public Long count(Class<T> entityClass, DetachedCriteria detachedCriteria) {
-        Criteria criteria = getCriteria(entityClass, detachedCriteria);
+        Criteria criteria = getCriteria(entityClass, detachedCriteria, null);
         criteria.setProjection(Projections.rowCount());
         return Long.valueOf(criteria.uniqueResult().toString());
     }
 
 
-    private Criteria getCriteria(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+    private Criteria getCriteria(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList) {
         Criteria criteria;
         if (detachedCriteria != null) {
             criteria = detachedCriteria.getExecutableCriteria(getSession());
         } else {
             criteria = getSession().createCriteria(entityClass);
+        }
+
+        if (propertyList != null && propertyList.size() > 0) {
+            ProjectionList projectionList = Projections.projectionList();
+            for (String prop : propertyList) {
+                projectionList.add(Projections.property(prop));
+            }
+            criteria.setProjection(projectionList);
+            criteria.setResultTransformer(new RootEntityResultTransformer(entityClass));
         }
 
         return criteria;

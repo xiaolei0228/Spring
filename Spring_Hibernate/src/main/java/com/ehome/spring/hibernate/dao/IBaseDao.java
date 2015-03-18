@@ -99,21 +99,23 @@ public abstract interface IBaseDao<T, PK extends Serializable> {
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList 查询指定的属性(字段)
      *
      * @return 对象集合
      */
-    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList);
 
     /**
      * 根据条件分页查询对象集合
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList 查询指定的属性(字段)
      * @param pager            分页对象
      *
      * @return 对象集合
      */
-    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList, Pager pager);
 
     /**
      * 根据条件查询条件内的所有对象集合
