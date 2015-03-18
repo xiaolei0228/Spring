@@ -129,7 +129,7 @@ public class FunctionServiceTest {
         propertyList.add("ename");
         List<Function> functionList = funcService.findList(Function.class, dc, propertyList);
         for (Function f : functionList) {
-            System.out.println(f.getName() + "---" + f.getEname());
+            System.out.println(f.getName() + "---" + f.getEname() + "---" + f.getDescription());
         }
     }
 
