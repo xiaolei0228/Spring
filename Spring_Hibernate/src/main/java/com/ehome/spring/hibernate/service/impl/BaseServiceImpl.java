@@ -117,6 +117,7 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
 
     /**
      * 根据某个字段查询
+     * (单表操作)
      *
      * @param entityClass 要删除的对象的类型
      * @param name        字段名称
@@ -124,6 +125,18 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      */
     public List<T> find(Class<T> entityClass, String name, String value) {
         return baseDao.find(entityClass, name, value);
+    }
+
+    /**
+     * 根据条件查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
+     *
+     * @return 对象集合
+     */
+    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria) {
+        return baseDao.findList(entityClass, detachedCriteria);
     }
 
     /**
@@ -144,13 +157,26 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param pager            分页对象
+     *
+     * @return 对象集合
+     */
+    public List<T> findListPager(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager) {
+        return baseDao.findListPager(entityClass, detachedCriteria, pager);
+    }
+
+    /**
+     * 根据条件分页查询对象集合
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
      * @param propertyList 查询指定的属性(字段)
      * @param pager            分页对象
      *
      * @return 对象集合
      */
-    public List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList, Pager pager) {
-        return baseDao.findList(entityClass, detachedCriteria, propertyList, pager);
+    public List<T> findListPager(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager, List<String> propertyList) {
+        return baseDao.findListPager(entityClass, detachedCriteria, pager, propertyList);
     }
 
     /**

@@ -43,7 +43,7 @@ public class FunctionServiceTest {
             Function function = new Function();
             function.setName("测试功能_" + i);
             function.setEname("testFunc_" + i);
-            function.setDescription("描述... " + i);
+            function.setDescription("测试描述... " + i);
             functionList.add(function);
         }
 
@@ -122,12 +122,13 @@ public class FunctionServiceTest {
     @Test
     public void findList() {
         DetachedCriteria dc = DetachedCriteria.forClass(Function.class);
-        //dc.add(Restrictions.like("name", "%2%"));
+        dc.add(Restrictions.like("name", "%2%"));
         dc.add(Restrictions.in("id", new Object[]{1L, 2L, 3L, 4L}));
         List<String> propertyList = new ArrayList<>();
         propertyList.add("name");
         propertyList.add("ename");
-        List<Function> functionList = funcService.findList(Function.class, dc, propertyList);
+        //List<Function> functionList = funcService.findList(Function.class, dc, propertyList);
+        List<Function> functionList = funcService.findList(Function.class, dc);
         for (Function f : functionList) {
             System.out.println(f.getName() + "---" + f.getEname() + "---" + f.getDescription());
         }
@@ -139,7 +140,11 @@ public class FunctionServiceTest {
         dc.add(Restrictions.like("name", "%修改%"));
         Pager pager = new Pager();
         pager.setPageSize(2);
-        List<Function> functionList = funcService.findList(Function.class, dc, null, pager);
+        List<String> propertyList = new ArrayList<>();
+        propertyList.add("name");
+        propertyList.add("ename");
+        List<Function> functionList = funcService.findListPager(Function.class, dc, pager);
+        //List<Function> functionList = funcService.findListPager(Function.class, dc, pager, propertyList);
         System.out.println("返回行数：" + functionList.size());
         System.out.println("总页面数：" + pager.getTotalPage());
         System.out.println("总行数：" + pager.getTotalRow());

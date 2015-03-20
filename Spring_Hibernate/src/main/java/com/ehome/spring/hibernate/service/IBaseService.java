@@ -88,6 +88,7 @@ public interface IBaseService<T, PK extends Serializable> {
 
     /**
      * 根据某个字段查询
+     * (单表操作)
      *
      * @param entityClass 要删除的对象的类型
      * @param name        字段名称
@@ -100,7 +101,17 @@ public interface IBaseService<T, PK extends Serializable> {
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
-     * @param propertyList 查询指定的属性(字段)
+     *
+     * @return 对象集合
+     */
+    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria);
+
+    /**
+     * 根据条件查询对象集合,并返回指定属性(字段)
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param propertyList     查询指定的属性(字段)
      *
      * @return 对象集合
      */
@@ -111,12 +122,23 @@ public interface IBaseService<T, PK extends Serializable> {
      *
      * @param entityClass      要查询的对象的类型
      * @param detachedCriteria 查询条件，如果为null，则查询全部
+     * @param pager            分页对象
+     *
+     * @return 对象集合
+     */
+    List<T> findListPager(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager);
+
+    /**
+     * 根据条件分页查询对象集合,并返回指定属性(字段)
+     *
+     * @param entityClass      要查询的对象的类型
+     * @param detachedCriteria 查询条件，如果为null，则查询全部
      * @param propertyList 查询指定的属性(字段)
      * @param pager            分页对象
      *
      * @return 对象集合
      */
-    List<T> findList(Class<T> entityClass, DetachedCriteria detachedCriteria, List<String> propertyList, Pager pager);
+    List<T> findListPager(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager, List<String> propertyList);
 
     /**
      * 根据条件查询条件内的所有对象集合
