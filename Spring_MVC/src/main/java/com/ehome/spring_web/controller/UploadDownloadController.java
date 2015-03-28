@@ -1,6 +1,7 @@
 package com.ehome.spring_web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,8 @@ import java.io.OutputStream;
 @RequestMapping("file")
 public class UploadDownloadController {
 
-    @RequestMapping("/download")
-    public String download(String fileName, HttpServletResponse response) {
+    @RequestMapping("/download{fileName}")
+    public String download(@PathVariable("fileName") String fileName, HttpServletResponse response) {
         OutputStream os = null;
         InputStream inputStream = null;
 
