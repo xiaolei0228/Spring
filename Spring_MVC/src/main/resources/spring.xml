@@ -16,6 +16,11 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!-- 对静态资源文件的访问 -->
+    <mvc:resources mapping="/js/**" location="/resources/" cache-period="1"/>
+    <mvc:resources mapping="/images/**" location="/resources/" cache-period="1"/>
+    <mvc:resources mapping="/css/**" location="/resources/" cache-period="1"/>
+
     <import resource="spring-freemarker.xml"/>
 
 </beans>
