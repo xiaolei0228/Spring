@@ -3,10 +3,9 @@ package com.ehome.spring.hibernate.test.service;
 import com.ehome.spring.hibernate.module.Function;
 import com.ehome.spring.hibernate.service.IFunctionService;
 import com.ehome.spring.hibernate.util.Pager;
-import org.hibernate.Criteria;
+import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.internal.CriteriaImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +21,8 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
 public class FunctionServiceTest {
+
+    private static Logger logger = Logger.getLogger(FunctionServiceTest.class);
 
     @Resource
     private IFunctionService funcService;
@@ -104,7 +105,7 @@ public class FunctionServiceTest {
 
     @Test
     public void findById() {
-        Function function = funcService.findById(Function.class, 11L);
+        Function function = funcService.findById(Function.class, 10L);
         System.out.println(function.getName());
     }
 
@@ -115,7 +116,8 @@ public class FunctionServiceTest {
         idList.add(2L);
         List<Function> functionList = funcService.findByIds(Function.class, idList);
         for (Function function : functionList) {
-            System.out.println(function.getName());
+            logger.info(function.getName());
+            logger.debug(function.getName());
         }
     }
 

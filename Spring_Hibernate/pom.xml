@@ -21,6 +21,7 @@
         <mysql.version>5.1.31</mysql.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <hibernate-commons-annotations.version>4.0.5.Final</hibernate-commons-annotations.version>
+        <log4j.version>1.2.17</log4j.version>
     </properties>
 
     <dependencies>
@@ -111,6 +112,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
         <dependency>
