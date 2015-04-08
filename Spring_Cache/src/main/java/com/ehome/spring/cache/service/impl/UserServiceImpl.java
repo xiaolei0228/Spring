@@ -46,6 +46,8 @@ public class UserServiceImpl implements IUserService {
     }
 
 
+
+
     @Cacheable(value = "user")
     public List<User> findList() {
         System.out.println("findList caching...");

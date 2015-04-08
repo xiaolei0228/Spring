@@ -14,7 +14,7 @@
         <springtest.version>4.1.4.RELEASE</springtest.version>
         <servletapi.version>3.1.0</servletapi.version>
         <aspectjweaver-version>1.8.4</aspectjweaver-version>
-        <jodd-version>3.5.2</jodd-version>
+        <jodd.version>3.5.2</jodd.version>
         <fastjson-version>1.1.41</fastjson-version>
         <druid-version>1.0.7</druid-version>
         <mysql-version>5.1.31</mysql-version>
@@ -85,6 +85,18 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid-version}</version>
+        </dependency>
+
+        <!-- jodd -->
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-core</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-http</artifactId>
+            <version>${jodd.version}</version>
         </dependency>
 
         <dependency>
