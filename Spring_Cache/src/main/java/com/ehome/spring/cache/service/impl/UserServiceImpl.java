@@ -26,7 +26,7 @@ public class UserServiceImpl implements IUserService {
     @Resource
     private IUserDao userDao;
 
-    @CachePut(value = "user")
+    @CachePut(value = "user", key = "users")
     public User save(User user) {
         return userDao.save(user);
     }

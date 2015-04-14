@@ -1,8 +1,11 @@
 package com.ehome.spring.cache.service;
 
 import com.ehome.spring.cache.entity.User;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -18,17 +21,25 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
 public class UserServiceTest {
-
     @Resource
     private IUserService userService;
+    @Resource
+    private CacheManager cacheManager;
+
+    private Cache userCache;
+
+    @Before
+    public void setUp() throws Exception {
+        userCache = cacheManager.getCache("user");
+    }
 
     @Test
     public void save() {
         for (int i = 1; i <= 10; i++) {
             User u = new User();
             u.setName("test_" + i);
-            //u.setMobile("100" + i);
-            //u.setSex(2);
+            u.setMobile("100" + i);
+            u.setSex(2);
             User user = userService.save(u);
             System.out.println(user.getId());
         }
@@ -47,15 +58,7 @@ public class UserServiceTest {
 
     @Test
     public void findList() {
-        for (int i = 1; i <= 10; i++) {
-            User u = new User();
-            u.setName("test_" + i);
-            //u.setMobile("100" + i);
-            //u.setSex(2);
-            User user = userService.save(u);
-            System.out.println(user.getId());
-        }
-
+        save();
         List<User> userList = userService.findList();
         for (User user : userList) {
             System.out.println(user.getName());

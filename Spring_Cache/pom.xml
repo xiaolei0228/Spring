@@ -18,7 +18,7 @@
         <fastjson-version>1.1.41</fastjson-version>
         <druid-version>1.0.7</druid-version>
         <mysql-version>5.1.31</mysql-version>
-        <ehcache-version>2.9.1</ehcache-version>
+        <ehcache.core.version>2.6.9</ehcache.core.version>
     </properties>
 
     <dependencies>
@@ -101,8 +101,8 @@
 
         <dependency>
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>${ehcache-version}</version>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.core.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @version V1.0
@@ -44,7 +45,12 @@ public class UserController {
     @RequestMapping("findList")
     @ResponseBody
     public Object findList() {
-        return userService.findList();
+        List<User> userList = userService.findList();
+        for (User user : userList) {
+            System.out.println(user.getName());
+        }
+
+        return userList;
     }
 
 }
