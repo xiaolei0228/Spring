@@ -41,9 +41,10 @@ public class JmsUtilImpl implements JmsUtil {
     /**
      * 接收消息
      */
-    public Message receiveMessage() {
+    public void receiveMessage() throws JMSException {
         TextMessage message = (TextMessage) jmsTemplate.receive();
-        return message;
+        System.out.println(message.getText());
+        receiveMessage();
     }
 
 }

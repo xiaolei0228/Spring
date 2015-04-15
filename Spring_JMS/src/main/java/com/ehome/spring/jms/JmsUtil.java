@@ -1,5 +1,6 @@
 package com.ehome.spring.jms;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 
 /**
@@ -13,5 +14,5 @@ public interface JmsUtil {
 
     void sendMessage(Message message);
 
-    Message receiveMessage();
+    void receiveMessage() throws JMSException;
 }

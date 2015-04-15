@@ -29,13 +29,14 @@ public class JmsUtilTest {
     @Test
     public void sendMessage() throws JMSException {
         TextMessage message = new ActiveMQTextMessage();
-        message.setText("随便一个消息...监听中发送消息");
+        message.setText("监听中发送消息......");
         jmsUtil.sendMessage(message);
     }
 
     @Test
     public void receiveMessage() throws JMSException {
-        TextMessage message = (TextMessage) jmsUtil.receiveMessage();
-        System.out.println("接收到的消息：" + message.getText());
+        //TextMessage message = (TextMessage) jmsUtil.receiveMessage();
+        //System.out.println("接收到的消息：" + message.getText());
+        jmsUtil.receiveMessage();
     }
 }
