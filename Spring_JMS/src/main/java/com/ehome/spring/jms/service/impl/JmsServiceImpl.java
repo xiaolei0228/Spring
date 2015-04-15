@@ -1,6 +1,6 @@
-package com.ehome.spring.jms.impl;
+package com.ehome.spring.jms.service.impl;
 
-import com.ehome.spring.jms.JmsUtil;
+import com.ehome.spring.jms.service.JmsService;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
@@ -19,8 +19,8 @@ import javax.jms.TextMessage;
  * @date: 2015-04-15 10:11
  * @desc:
  */
-@Service("jmsUtil")
-public class JmsUtilImpl implements JmsUtil {
+@Service("jmsService")
+public class JmsServiceImpl implements JmsService {
 
     @Resource
     private JmsTemplate jmsTemplate;

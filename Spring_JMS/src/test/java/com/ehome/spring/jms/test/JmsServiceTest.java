@@ -1,6 +1,6 @@
 package com.ehome.spring.jms.test;
 
-import com.ehome.spring.jms.JmsUtil;
+import com.ehome.spring.jms.service.JmsService;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.TextMessage;
 
 /**
@@ -21,22 +20,22 @@ import javax.jms.TextMessage;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
-public class JmsUtilTest {
+public class JmsServiceTest {
 
     @Resource
-    public JmsUtil jmsUtil;
+    private JmsService jmsService;
 
     @Test
     public void sendMessage() throws JMSException {
         TextMessage message = new ActiveMQTextMessage();
         message.setText("监听中发送消息......");
-        jmsUtil.sendMessage(message);
+        jmsService.sendMessage(message);
     }
 
     @Test
     public void receiveMessage() throws JMSException {
         //TextMessage message = (TextMessage) jmsUtil.receiveMessage();
         //System.out.println("接收到的消息：" + message.getText());
-        jmsUtil.receiveMessage();
+        jmsService.receiveMessage();
     }
 }

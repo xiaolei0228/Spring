@@ -1,4 +1,4 @@
-package com.ehome.spring.jms;
+package com.ehome.spring.jms.service;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -10,7 +10,7 @@ import javax.jms.Message;
  * @date: 2015-04-15 10:43
  * @desc:
  */
-public interface JmsUtil {
+public interface JmsService {
 
     void sendMessage(Message message);
 
