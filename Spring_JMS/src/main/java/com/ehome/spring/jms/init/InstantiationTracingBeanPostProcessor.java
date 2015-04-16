@@ -25,7 +25,7 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
      * 当容器启动的时候会执行的方法
      */
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        System.out.println("开始执行...");
+        System.out.println("-------------------- 容器已启动 --------------------");
         try {
             jmsService.receiveMessage();
         } catch (JMSException e) {
