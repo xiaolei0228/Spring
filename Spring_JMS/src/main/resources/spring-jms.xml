@@ -6,11 +6,12 @@
     <!-- 创建工厂连接 -->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616"/>
+        <!--<property name="brokerURL" value="tcp://10.251.1.33:61616"/>-->
     </bean>
 
     <!-- activeMQ消息目标 队列 -->
     <bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg index="0" value="ehome.jms.queue"/>
+        <constructor-arg index="0" name="name" value="jianguanqueue"/>
     </bean>
 
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
