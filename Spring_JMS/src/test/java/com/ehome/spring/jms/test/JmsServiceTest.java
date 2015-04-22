@@ -4,6 +4,7 @@ import com.ehome.spring.jms.service.JmsService;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Repeat;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,11 +26,15 @@ public class JmsServiceTest {
     @Resource
     private JmsService jmsService;
 
+    private int index = 1;
+
     @Test
+    @Repeat(1)
     public void sendMessage() throws JMSException {
         TextMessage message = new ActiveMQTextMessage();
-        message.setText("监听中发送消息......");
+        message.setText("监听中发送消息...... " + index);
         jmsService.sendMessage(message);
+        index++;
     }
 
     @Test

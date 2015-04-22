@@ -15,7 +15,7 @@ import javax.jms.JMSException;
  * @date: 2015-04-15 14:55
  * @desc: 当容器启动的时候会执行onApplicationEvent
  */
-@Component
+//@Component
 public class InstantiationTracingBeanPostProcessor implements ApplicationListener<ContextRefreshedEvent> {
 
     @Resource
