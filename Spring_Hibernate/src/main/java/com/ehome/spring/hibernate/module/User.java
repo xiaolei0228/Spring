@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * @author: 郝晓雷
  * @date: 2015-04-22 10:38
- * @desc: 用户表
+ * @desc: 用户表     复合主键
  */
 @Entity
 @Table(name = "t_user")

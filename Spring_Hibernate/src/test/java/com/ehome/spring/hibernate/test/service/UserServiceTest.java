@@ -32,7 +32,7 @@ public class UserServiceTest {
     public void save() {
         User user = new User();
         user.setName("test");
-        user.setMobile("13071011950");
+        user.setMobile("123456789");
         user.setAge(29);
         user.setAddress("郑州市");
         userService.save(user);
