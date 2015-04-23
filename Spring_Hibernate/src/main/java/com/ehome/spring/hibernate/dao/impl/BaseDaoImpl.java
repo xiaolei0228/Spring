@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -223,14 +224,16 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
      */
     public List<T> findListPager(Class<T> entityClass, DetachedCriteria detachedCriteria, Pager pager, List<String> propertyList) {
         Criteria criteria = getCriteria(entityClass, detachedCriteria, propertyList);
+        // 统计总记录数
+        criteria.setProjection(Projections.rowCount());
+        pager.setTotalRow(Integer.valueOf(criteria.uniqueResult().toString()));
+        criteria.setProjection(null);       //清空projection，以便取得记录
+        criteria.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);//设置查询结果为实体对象
+
         // 查询
         criteria.setFirstResult(pager.getStart());
         criteria.setMaxResults(pager.getPageSize());
         List resultList = criteria.list();
-
-        // 统计总记录数
-        criteria.setProjection(Projections.rowCount());
-        pager.setTotalRow(Integer.valueOf(criteria.uniqueResult().toString()));
 
         return resultList;
     }
