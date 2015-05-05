@@ -7,5 +7,5 @@ import com.ehome.spring.hibernate.module.Function;
  */
 public interface IFunctionService extends IBaseService<Function, Long> {
 
-
+    void saveFun();
 }

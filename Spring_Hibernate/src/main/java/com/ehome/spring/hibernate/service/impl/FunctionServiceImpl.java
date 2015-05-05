@@ -11,4 +11,15 @@ import org.springframework.stereotype.Service;
 public class FunctionServiceImpl extends BaseServiceImpl<Function, Long> implements IFunctionService {
 
 
+    public void saveFun() {
+        Function function = findById(Function.class, 2L);
+        function.setDescription("更新操作");
+        update(function);
+
+        Function viewFun = new Function();
+        viewFun.setName("查看");
+        viewFun.setEname("view");
+        viewFun.setDescription("查看操作");
+        save(viewFun);
+    }
 }

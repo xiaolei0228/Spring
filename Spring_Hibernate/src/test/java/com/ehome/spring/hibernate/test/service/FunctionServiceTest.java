@@ -158,5 +158,10 @@ public class FunctionServiceTest {
         System.out.println(functionList.size());
     }
 
+    @Test
+    public void saveFun() {
+        funcService.saveFun();
+    }
+
 
 }

@@ -21,6 +21,7 @@
         <mysql.version>5.1.31</mysql.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <hibernate-commons-annotations.version>4.0.5.Final</hibernate-commons-annotations.version>
+        <ehcache.version>2.10.0</ehcache.version>
         <log4j.version>1.2.17</log4j.version>
     </properties>
 
@@ -83,6 +84,14 @@
             <version>${hibernate-commons-annotations.version}</version>
         </dependency>
         <!-- ] Hibernate4 -end -->
+
+        <!-- ehcache -start [ -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <!-- ] ehcache -end -->
 
         <dependency>
             <groupId>mysql</groupId>
