@@ -3,7 +3,9 @@ package com.ehome.spring.hibernate.test.service;
 import com.ehome.spring.hibernate.module.User;
 import com.ehome.spring.hibernate.service.IUserService;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +43,8 @@ public class UserServiceTest {
     @Test
     public void findById() {
         DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-        criteria.add(Restrictions.eq("name", "test"));
+        //criteria.add(Restrictions.eq("name", "test"));
+        criteria.add(Restrictions.or(Restrictions.like("name", "test", MatchMode.ANYWHERE), Restrictions.like("address", "test", MatchMode.ANYWHERE)));
         List<User> userList = userService.findList(User.class, criteria);
         for (User user : userList) {
             logger.info(user.getName() + "---" + user.getMobile() + "---" + user.getAddress());
