@@ -21,6 +21,7 @@
     <mvc:resources mapping="/images/**" location="/resources/" cache-period="1"/>
     <mvc:resources mapping="/css/**" location="/resources/" cache-period="1"/>
 
+    <import resource="spring-shiro.xml"/>
     <import resource="spring-freemarker.xml"/>
 
 </beans>
