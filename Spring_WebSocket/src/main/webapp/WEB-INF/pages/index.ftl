@@ -35,7 +35,7 @@
         }
     </style>
     <script src="/resources/js/jquery-1.10.2-min.js" type="text/javascript"></script>
-    <script src="js/sockjs.min.js" type="text/javascript"></script>
+    <script src="/resources/js/sockjs.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="msgContainer"></div>
