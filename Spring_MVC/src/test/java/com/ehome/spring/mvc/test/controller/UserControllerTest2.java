@@ -1,4 +1,4 @@
-package com.ehome.spring_web.test.controller;
+package com.ehome.spring.mvc.test.controller;
 
 import org.junit.Before;
 import org.junit.Test;

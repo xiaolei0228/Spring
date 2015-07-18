@@ -1,6 +1,6 @@
-package com.ehome.spring_web.dao;
+package com.ehome.spring.mvc.dao;
 
-import com.ehome.spring_web.module.User;
+import com.ehome.spring.mvc.module.User;
 
 /**
  * Created by haoxiaolei on 2014/6/13 0013.

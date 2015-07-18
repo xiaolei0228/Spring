@@ -1,6 +1,7 @@
-package com.ehome.spring_web.test.dao;
+package com.ehome.spring.mvc.test.service;
 
-import com.ehome.spring_web.dao.UserDao;
+import com.ehome.spring.mvc.module.User;
+import com.ehome.spring.mvc.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,19 +14,19 @@ import javax.annotation.Resource;
  * Spring
  *
  * @author: 郝晓雷
- * @date: 2015-06-29 13:20
- * @desc: 用spring-test和mockito不启动容器测试dao
+ * @date: 2015-06-29 12:59
+ * @desc: 用spring-test和mockito不启动容器测试service
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
-public class UserDaoTest {
+public class UserServieTest {
 
     @InjectMocks
     @Resource
-    private UserDao userDao;
+    private UserService userService;
 
     @Test
     public void getUserById() {
-        userDao.getUserById(12L);
+        User u = userService.getUserById(1L);
     }
 }

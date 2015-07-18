@@ -1,4 +1,4 @@
-package com.ehome.spring_web.test.controller;
+package com.ehome.spring.mvc.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import jodd.http.HttpRequest;

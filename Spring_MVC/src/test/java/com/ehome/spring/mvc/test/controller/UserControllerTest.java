@@ -1,12 +1,9 @@
-package com.ehome.spring_web.test.controller;
+package com.ehome.spring.mvc.test.controller;
 
-import com.alibaba.fastjson.JSON;
 import jodd.http.HttpRequest;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

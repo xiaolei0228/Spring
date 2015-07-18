@@ -1,4 +1,4 @@
-package com.ehome.spring_web.controller;
+package com.ehome.spring.mvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

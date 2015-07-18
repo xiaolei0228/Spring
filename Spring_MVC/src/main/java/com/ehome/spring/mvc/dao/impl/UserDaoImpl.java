@@ -1,7 +1,7 @@
-package com.ehome.spring_web.dao.impl;
+package com.ehome.spring.mvc.dao.impl;
 
-import com.ehome.spring_web.dao.UserDao;
-import com.ehome.spring_web.module.User;
+import com.ehome.spring.mvc.dao.UserDao;
+import com.ehome.spring.mvc.module.User;
 import org.springframework.stereotype.Repository;
 
 /**

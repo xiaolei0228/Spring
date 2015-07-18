@@ -1,9 +1,9 @@
-package com.ehome.spring_web.controller;
+package com.ehome.spring.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ehome.spring_web.module.User;
-import com.ehome.spring_web.service.UserService;
+import com.ehome.spring.mvc.module.User;
+import com.ehome.spring.mvc.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;

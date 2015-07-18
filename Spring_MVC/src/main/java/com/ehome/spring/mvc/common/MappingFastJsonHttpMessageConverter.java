@@ -1,4 +1,4 @@
-package com.ehome.spring_web.common;
+package com.ehome.spring.mvc.common;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

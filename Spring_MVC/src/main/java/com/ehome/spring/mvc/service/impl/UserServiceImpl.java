@@ -1,8 +1,8 @@
-package com.ehome.spring_web.service.impl;
+package com.ehome.spring.mvc.service.impl;
 
-import com.ehome.spring_web.dao.UserDao;
-import com.ehome.spring_web.module.User;
-import com.ehome.spring_web.service.UserService;
+import com.ehome.spring.mvc.dao.UserDao;
+import com.ehome.spring.mvc.module.User;
+import com.ehome.spring.mvc.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

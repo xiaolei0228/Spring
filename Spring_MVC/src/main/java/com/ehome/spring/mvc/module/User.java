@@ -1,4 +1,4 @@
-package com.ehome.spring_web.module;
+package com.ehome.spring.mvc.module;
 
 /**
  * @version V1.0
