@@ -16,7 +16,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  *
  * @author: 郝晓雷
  * @date: 2015-07-18 13:58
- * @desc:
+ * @desc: websocket主配置
  */
 @Configuration
 @EnableWebMvc

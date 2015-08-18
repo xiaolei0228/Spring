@@ -55,7 +55,8 @@
         websocket.onmessage = function (evnt) {
             var msgContainer = $("#msgContainer");
             var html = msgContainer.html();
-            msgContainer.html(html += "<div style='color: red;'>" + evnt.data + "</div>");
+            html += "<div style='color: red;'>" + evnt.data + "</div>"
+            msgContainer.html(html);
         };
         websocket.onerror = function (evnt) {
         };
