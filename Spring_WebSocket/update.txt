@@ -1,1 +1,2 @@
 1、实现了广播和单播
+2、实现了请求过来的会话，以sessionId+时间戳来暂时确定唯一webSocketSession
