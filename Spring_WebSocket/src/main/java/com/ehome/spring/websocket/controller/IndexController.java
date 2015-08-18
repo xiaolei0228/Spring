@@ -1,10 +1,13 @@
 package com.ehome.spring.websocket.controller;
 
+import com.ehome.spring.websocket.util.Constant;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * Spring
@@ -20,6 +23,11 @@ public class IndexController {
     @RequestMapping("")
     public String index(HttpServletRequest request, Model model) {
         model.addAttribute("hello", "spring mvc");
+        HttpSession session = request.getSession(true);
+        String sessionId = session.getId() + new Date().getTime();
+        session.setAttribute(Constant.SESSION_ID, sessionId);
+        System.out.println("==================sessionId: " + sessionId);
+
         return "index";
     }
 }

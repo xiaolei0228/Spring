@@ -2,12 +2,9 @@ package com.ehome.spring.websocket.interceptor;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,9 +27,6 @@ public class WebSocketHandshakeInterceptor extends HttpSessionHandshakeIntercept
      */
     public boolean beforeHandshake(ServerHttpRequest req, ServerHttpResponse resp, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
         System.out.println("Before Handshake...");
-        ServletServerHttpRequest request = (ServletServerHttpRequest) req;
-        String sessionId = request.getServletRequest().getSession(true).getId();
-        attributes.put("sessionId", sessionId);
         return super.beforeHandshake(req, resp, wsHandler, attributes);
     }
 

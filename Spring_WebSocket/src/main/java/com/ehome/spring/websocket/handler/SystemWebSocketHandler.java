@@ -1,5 +1,6 @@
 package com.ehome.spring.websocket.handler;
 
+import com.ehome.spring.websocket.util.Constant;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -48,8 +49,7 @@ public class SystemWebSocketHandler implements WebSocketHandler {
          * 在sessionMap里可以全部遍历实现广播，也可以get(key)获取单个的实现单播。
          */
         Map<String, Object> attributes = webSocketSession.getAttributes();
-        String sessionId = attributes.get("sessionId") != null ? attributes.get("sessionId").toString() : "";
-        sessionId += webSocketSession.getId();
+        String sessionId = attributes.get(Constant.SESSION_ID) != null ? attributes.get(Constant.SESSION_ID).toString() : "";
         sessionIdList.add(sessionId);
 
         sessionMap.put(sessionId, webSocketSession);
@@ -78,7 +78,7 @@ public class SystemWebSocketHandler implements WebSocketHandler {
      */
     public void handleTransportError(WebSocketSession webSocketSession, Throwable throwable) throws Exception {
         Map<String, Object> attributes = webSocketSession.getAttributes();
-        String sessionId = attributes.get("sessionId") != null ? attributes.get("sessionId").toString() : "";
+        String sessionId = attributes.get(Constant.SESSION_ID) != null ? attributes.get(Constant.SESSION_ID).toString() : "";
         sessionId += webSocketSession.getId();
         if (sessionMap.containsKey(sessionId)) {
             sessionMap.remove(sessionId);
@@ -100,12 +100,10 @@ public class SystemWebSocketHandler implements WebSocketHandler {
      */
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus closeStatus) throws Exception {
         Map<String, Object> attributes = webSocketSession.getAttributes();
-        String sessionId = attributes.get("sessionId") != null ? attributes.get("sessionId").toString() : "";
-        sessionId += webSocketSession.getId();
+        String sessionId = attributes.get(Constant.SESSION_ID) != null ? attributes.get(Constant.SESSION_ID).toString() : "";
         if (sessionMap.containsKey(sessionId)) {
             sessionMap.remove(sessionId);
         }
-        System.out.println(webSocketSession.isOpen());
         logger.debug("websocket连接正常关闭!");
     }
 
