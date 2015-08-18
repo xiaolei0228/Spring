@@ -31,10 +31,10 @@ public class AdminController {
     public String sendMsg(HttpServletRequest request) {
         TextMessage message = new TextMessage("我是消息内容..." + new Date().toLocaleString());
         // 广播
-        systemWebSocketHandler.broadcast(message);
+        //systemWebSocketHandler.broadcast(message);
 
         // 单播
-        //systemWebSocketHandler.unicast("32DB4AB5520C9DAC658B4905202358941", message);
+        systemWebSocketHandler.unicast("CA2636836C8DB3B657B1C6F874C4466A0", message);
 
         return null;
     }

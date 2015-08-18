@@ -1,7 +1,6 @@
 package com.ehome.spring.websocket.handler;
 
 import org.apache.log4j.Logger;
-import org.springframework.core.Constants;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -78,9 +77,17 @@ public class SystemWebSocketHandler implements WebSocketHandler {
      * @throws Exception
      */
     public void handleTransportError(WebSocketSession webSocketSession, Throwable throwable) throws Exception {
-        if (webSocketSession.isOpen()) webSocketSession.close();
-        logger.debug("websocket连接关闭!");
-        sessionMap.remove(webSocketSession.getId());
+        Map<String, Object> attributes = webSocketSession.getAttributes();
+        String sessionId = attributes.get("sessionId") != null ? attributes.get("sessionId").toString() : "";
+        sessionId += webSocketSession.getId();
+        if (sessionMap.containsKey(sessionId)) {
+            sessionMap.remove(sessionId);
+        }
+
+        if (webSocketSession.isOpen()) {
+            webSocketSession.close();
+        }
+        logger.debug("websocket传输错误,连接关闭!");
     }
 
     /**
@@ -92,8 +99,14 @@ public class SystemWebSocketHandler implements WebSocketHandler {
      * @throws Exception
      */
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus closeStatus) throws Exception {
-        logger.debug("websocket连接关闭!");
-        sessionMap.remove(webSocketSession.getId());
+        Map<String, Object> attributes = webSocketSession.getAttributes();
+        String sessionId = attributes.get("sessionId") != null ? attributes.get("sessionId").toString() : "";
+        sessionId += webSocketSession.getId();
+        if (sessionMap.containsKey(sessionId)) {
+            sessionMap.remove(sessionId);
+        }
+        System.out.println(webSocketSession.isOpen());
+        logger.debug("websocket连接正常关闭!");
     }
 
     public boolean supportsPartialMessages() {
@@ -132,6 +145,8 @@ public class SystemWebSocketHandler implements WebSocketHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            logger.info("此sessionId: " + sessionId + " 或已关闭!");
         }
     }
 }
