@@ -24,7 +24,7 @@ public class IndexController {
     public String index(HttpServletRequest request, Model model) {
         model.addAttribute("hello", "spring mvc");
         HttpSession session = request.getSession(true);
-        String sessionId = session.getId() + new Date().getTime();
+        String sessionId = session.getId() + new Date().getTime();  // 重新组装唯一sessionId
         session.setAttribute(Constant.SESSION_ID, sessionId);
         System.out.println("==================sessionId: " + sessionId);
 
