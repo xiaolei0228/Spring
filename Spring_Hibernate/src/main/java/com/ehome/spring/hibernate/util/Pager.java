@@ -1,7 +1,7 @@
 package com.ehome.spring.hibernate.util;
 
 /**
- * Created by haoxiaolei on 2015-02-11 14:28
+ * 分页
  */
 public class Pager {
     private int curPage = 1;    // 当前页
@@ -26,8 +26,7 @@ public class Pager {
     }
 
     public int getStart() {
-        // start=curPage*pageSize;
-        return start;
+        return (curPage - 1) * pageSize;
     }
 
     public int getEnd() {
