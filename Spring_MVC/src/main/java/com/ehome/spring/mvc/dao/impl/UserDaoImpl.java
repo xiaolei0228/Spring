@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @Date 2014/6/13 0013 23:33
  * @Copyright: 2014 ihome.com
  */
-@Repository("userDao")
+@Repository
 public class UserDaoImpl implements UserDao {
 
     public User getUserById(Long id) {

@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @Date 2014/6/13 0013 23:01
  * @Copyright: 2014 ihome.com
  */
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
