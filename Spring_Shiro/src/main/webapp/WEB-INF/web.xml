@@ -4,6 +4,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!-- spring-orm-hibernate4的OpenSessionInViewFilter -->
+    <filter>
+        <filter-name>opensessioninview</filter-name>
+        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>opensessioninview</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- spring 基础配置 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
