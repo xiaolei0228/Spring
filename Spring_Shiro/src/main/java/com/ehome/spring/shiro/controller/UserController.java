@@ -19,7 +19,7 @@ public class UserController {
     @RequestMapping("hello")
     public String hello(Model model) {
         User user = new User();
-        user.setName("spring_shiro...");
+        user.setUsername("spring_shiro...");
 
         model.addAttribute("user", user);
 
