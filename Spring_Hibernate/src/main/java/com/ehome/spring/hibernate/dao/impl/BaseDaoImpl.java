@@ -226,12 +226,12 @@ public  class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK>
         Criteria criteria = getCriteria(entityClass, detachedCriteria, propertyList);
         // 统计总记录数
         criteria.setProjection(Projections.rowCount());
-        pager.setTotalRow(Integer.valueOf(criteria.uniqueResult().toString()));
+        pager.setTotalRecords(Integer.valueOf(criteria.uniqueResult().toString()));
         criteria.setProjection(null);       //清空projection，以便取得记录
         criteria.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);//设置查询结果为实体对象
 
         // 查询
-        criteria.setFirstResult(pager.getStart());
+        criteria.setFirstResult(pager.getPageNo());
         criteria.setMaxResults(pager.getPageSize());
         List resultList = criteria.list();
 

@@ -148,8 +148,8 @@ public class FunctionServiceTest {
         List<Function> functionList = funcService.findListPager(Function.class, dc, pager);
         //List<Function> functionList = funcService.findListPager(Function.class, dc, pager, propertyList);
         System.out.println("返回行数：" + functionList.size());
-        System.out.println("总页面数：" + pager.getTotalPage());
-        System.out.println("总行数：" + pager.getTotalRow());
+        System.out.println("总页面数：" + pager.getTotalPages());
+        System.out.println("总行数：" + pager.getTotalRecords());
     }
 
     @Test

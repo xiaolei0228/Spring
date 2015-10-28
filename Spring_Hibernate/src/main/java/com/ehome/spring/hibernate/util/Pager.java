@@ -1,36 +1,76 @@
 package com.ehome.spring.hibernate.util;
 
+import java.util.List;
+
 /**
  * 分页
  */
 public class Pager {
-    private int curPage = 1;    // 当前页
-    private int pageSize = 10;  // 每页多少行
-    private int totalRow;       // 共多少行
-    private int start;          // 当前页起始行
-    private int end;            // 结束行
-    private int totalPage;     // 共多少页
+    //结果集
+    private List<?> list;
+    //查询记录数
+    private int totalRecords;
+    //每页多少条记录
+    private int pageSize;
+    //第几页
+    private int pageNo;
 
-    public int getCurPage() {
-        return curPage;
+    /**
+     * 总页数
+     */
+    public int getTotalPages() {
+        return (totalRecords + pageSize - 1) / pageSize;
+
     }
 
-    public void setCurPage(int curPage) {
-        if (curPage < 1) {
-            curPage = 1;
-        } else {
-            start = pageSize * (curPage - 1);
+    /**
+     * 取得首页
+     */
+    public int getTopPageNo() {
+        return 1;
+    }
+
+    /**
+     * 上一页
+     */
+    public int getPreviousPageNo() {
+        if (pageNo <= 1) {
+            return 1;
         }
-        end = start + pageSize > totalRow ? totalRow : start + pageSize;
-        this.curPage = curPage;
+        return pageNo - 1;
     }
 
-    public int getStart() {
-        return (curPage - 1) * pageSize;
+    /**
+     * 下一页
+     */
+    public int getNextPageNo() {
+        if (pageNo >= getBottomPageNo()) {
+            return getBottomPageNo();
+        }
+        return pageNo + 1;
     }
 
-    public int getEnd() {
-        return end;
+    /**
+     * 取得尾页
+     */
+    public int getBottomPageNo() {
+        return getTotalPages();
+    }
+
+    public List<?> getList() {
+        return list;
+    }
+
+    public void setList(List<?> list) {
+        this.list = list;
+    }
+
+    public int getTotalRecords() {
+        return totalRecords;
+    }
+
+    public void setTotalRecords(int totalRecords) {
+        this.totalRecords = totalRecords;
     }
 
     public int getPageSize() {
@@ -41,22 +81,11 @@ public class Pager {
         this.pageSize = pageSize;
     }
 
-    public int getTotalRow() {
-        return totalRow;
+    public int getPageNo() {
+        return pageNo;
     }
 
-    public void setTotalRow(int totalRow) {
-        totalPage = (totalRow + pageSize - 1) / pageSize;
-        this.totalRow = totalRow;
-        if (totalPage < curPage) {
-            curPage = totalPage;
-            start = pageSize * (curPage - 1);
-            end = totalRow;
-        }
-        end = start + pageSize > totalRow ? totalRow : start + pageSize;
-    }
-
-    public int getTotalPage() {
-        return this.totalPage;
+    public void setPageNo(int pageNo) {
+        this.pageNo = pageNo;
     }
 }
