@@ -30,7 +30,7 @@ public class JmsServiceImpl implements JmsService {
     /**
      * 发送消息
      */
-    public void sendMessage(Message message) {
+    public void sendMessage(final Message message) {
         jmsTemplate.send(destination, new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(((TextMessage) message).getText());
