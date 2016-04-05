@@ -5,8 +5,7 @@
 
     <!-- 创建工厂连接 -->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <!--<property name="brokerURL" value="tcp://localhost:61616"/>-->
-        <property name="brokerURL" value="tcp://10.251.1.33:61616"/>
+        <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>
 
     <!-- activeMQ消息目标 队列 -->
