@@ -34,7 +34,6 @@ public class SenderServiceImpl implements ISenderService {
      * @param message     文件消息
      */
     public void sendMessage(Destination destination, String message) {
-        System.out.println("---------------生产者发了一个消息：" + message);
         jmsTemplate.send(destination, new MessageCreator() {
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage(message);
@@ -49,8 +48,6 @@ public class SenderServiceImpl implements ISenderService {
      * @param obj         可序列化的对象
      */
     public void sendMessage(Destination destination, final Serializable obj) {
-        System.out.println("---------------生产者发了一个序列化对象：" + obj);
-        jmsTemplate.convertAndSend(destination, obj);
         jmsTemplate.execute(new SessionCallback<Object>() {
             public Object doInJms(Session session) throws JMSException {
                 MessageProducer producer = session.createProducer(destination);

@@ -2,7 +2,7 @@ package com.ehome.spring.jms.listener;
 
 import com.ehome.spring.jms.entity.User;
 import com.ehome.spring.jms.service.ISenderService;
-import org.springframework.jms.core.JmsTemplate;
+import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 
 import javax.annotation.Resource;
@@ -24,8 +24,6 @@ public class ConsumerSessionAwareMessageListener implements SessionAwareMessageL
 
     @Resource
     private ISenderService senderService;
-    @Resource
-    private Destination afterTargetQueue;
 
     public void onMessage(Message message, Session session) throws JMSException {
         if (message instanceof TextMessage) {
@@ -35,9 +33,11 @@ public class ConsumerSessionAwareMessageListener implements SessionAwareMessageL
             ObjectMessage objMsg = (ObjectMessage) message;
             User user = (User) objMsg.getObject();
             System.out.println(user.getName() + "\t" + user.getPassword());
-
+            String pid = user.getPid();
             // 写service方法处理业务逻辑
-            senderService.sendMessage(afterTargetQueue, "已收到");
+            String queue = "point_" + pid + "_queue";
+            Destination destination = new ActiveMQQueue(queue);
+            senderService.sendMessage(destination, "业务处理完返回给pc端消息结果...");
         }
     }
 }

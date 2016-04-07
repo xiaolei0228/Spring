@@ -38,6 +38,7 @@ public class SessionAwareSenderServiceTest {
         User user = new User();
         user.setName("单车上的理想");
         user.setPassword("888888");
+        user.setPid("410102218");
         senderService.sendMessage(destination, user);
     }
 

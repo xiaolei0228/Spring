@@ -15,6 +15,7 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String password;
+    private String pid;
 
     public Long getId() {
         return id;
@@ -38,5 +39,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 }
