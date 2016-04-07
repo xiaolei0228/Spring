@@ -1,6 +1,6 @@
 package com.ehome.spring.jms.service.impl;
 
-import com.ehome.spring.jms.service.ISessionAwareSenderService;
+import com.ehome.spring.jms.service.ISenderService;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.core.SessionCallback;
@@ -22,7 +22,7 @@ import java.io.Serializable;
  * @desc: 发送者服务
  */
 @Service
-public class SessionAwareSenderServiceImpl implements ISessionAwareSenderService {
+public class SenderServiceImpl implements ISenderService {
 
     @Resource
     private JmsTemplate jmsTemplate;
