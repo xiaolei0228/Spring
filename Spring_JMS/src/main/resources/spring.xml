@@ -9,6 +9,6 @@
     <!-- spring mvc 注解驱动 -->
     <mvc:annotation-driven/>
 
-    <import resource="spring-jms.xml"/>
+    <import resource="spring-mq.xml"/>
 
 </beans>
