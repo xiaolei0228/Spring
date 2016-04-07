@@ -1,6 +1,8 @@
 package com.ehome.spring.jms.listener;
 
 import com.ehome.spring.jms.entity.User;
+import com.ehome.spring.jms.service.ISenderService;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 
 import javax.annotation.Resource;
@@ -19,8 +21,11 @@ import javax.jms.TextMessage;
  * @desc:
  */
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
-    @Resource(name = "sessionAwareQueue")
-    private Destination destination;
+
+    @Resource
+    private ISenderService senderService;
+    @Resource
+    private Destination afterTargetQueue;
 
     public void onMessage(Message message, Session session) throws JMSException {
         if (message instanceof TextMessage) {
@@ -30,6 +35,9 @@ public class ConsumerSessionAwareMessageListener implements SessionAwareMessageL
             ObjectMessage objMsg = (ObjectMessage) message;
             User user = (User) objMsg.getObject();
             System.out.println(user.getName() + "\t" + user.getPassword());
+
+            // 写service方法处理业务逻辑
+            senderService.sendMessage(afterTargetQueue, "已收到");
         }
     }
 }
