@@ -3,7 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- JMS activeMq的配置 -->
     <!-- 1 配置connectionFactory -->
     <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616"/>
@@ -13,18 +12,19 @@
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
+
     <!-- 3.1 这个是sessionAwareQueue目的地-->
     <bean id="sessionAwareQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="sessionAwareQueue"/>
     </bean>
 
-    <!-- 4 可以获取session的MessageListener -->
-    <bean id="consumerSessionAwareMessageListener" class="com.ehome.spring.jms.listener.ConsumerSessionAwareMessageListener"/>
-    <!-- 5 消息监听容器 -->
+    <!-- 4.1 SessionAware消息监听容器 -->
     <bean id="sessionAwareListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="destination" ref="sessionAwareQueue"/>
-        <property name="messageListener" ref="consumerSessionAwareMessageListener"/>
+        <property name="messageListener">
+            <bean class="com.ehome.spring.jms.listener.ConsumerSessionAwareMessageListener"/>
+        </property>
     </bean>
 
 </beans>
