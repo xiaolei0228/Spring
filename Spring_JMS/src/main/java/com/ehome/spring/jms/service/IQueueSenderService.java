@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date: 2016-04-06 15:17
  * @desc: 发送者服务
  */
-public interface ISenderService {
+public interface IQueueSenderService {
 
     /**
      * 发送普通的纯文本消息

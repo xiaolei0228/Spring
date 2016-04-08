@@ -1,7 +1,7 @@
 package com.ehome.spring.jms.test;
 
 import com.ehome.spring.jms.entity.User;
-import com.ehome.spring.jms.service.ISenderService;
+import com.ehome.spring.jms.service.IQueueSenderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,7 +24,7 @@ import java.util.Date;
 public class SessionAwareSenderServiceTest {
 
     @Resource
-    private ISenderService senderService;
+    private IQueueSenderService senderService;
     @Resource(name = "sessionAwareQueue")
     private Destination destination;
 

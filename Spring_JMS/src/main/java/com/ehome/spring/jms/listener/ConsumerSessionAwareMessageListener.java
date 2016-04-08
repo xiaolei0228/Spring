@@ -1,7 +1,7 @@
 package com.ehome.spring.jms.listener;
 
 import com.ehome.spring.jms.entity.User;
-import com.ehome.spring.jms.service.ISenderService;
+import com.ehome.spring.jms.service.IQueueSenderService;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 
@@ -23,7 +23,7 @@ import javax.jms.TextMessage;
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
 
     @Resource
-    private ISenderService senderService;
+    private IQueueSenderService senderService;
 
     public void onMessage(Message message, Session session) throws JMSException {
         if (message instanceof TextMessage) {
