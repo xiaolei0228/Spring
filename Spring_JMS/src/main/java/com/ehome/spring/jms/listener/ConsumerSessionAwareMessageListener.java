@@ -1,8 +1,10 @@
 package com.ehome.spring.jms.listener;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ehome.spring.jms.entity.User;
-import com.ehome.spring.jms.service.IQueueSenderService;
+import com.ehome.spring.jms.service.ISenderService;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 
 import javax.annotation.Resource;
@@ -23,7 +25,7 @@ import javax.jms.TextMessage;
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
 
     @Resource
-    private IQueueSenderService senderService;
+    private ISenderService senderService;
 
     public void onMessage(Message message, Session session) throws JMSException {
         if (message instanceof TextMessage) {
@@ -37,7 +39,11 @@ public class ConsumerSessionAwareMessageListener implements SessionAwareMessageL
             // 写service方法处理业务逻辑
             String queue = "point_" + pid + "_queue";
             Destination destination = new ActiveMQQueue(queue);
-            senderService.sendMessage(destination, "业务处理完返回给pc端消息结果...");
+            senderService.sendMessage(destination, JSONObject.toJSONString(user));
+
+            // 还可以广播
+            Destination toppicDestination = new ActiveMQTopic("Online.Notice.Topic");
+            senderService.sendMessage(toppicDestination, JSONObject.toJSONString(user));
         }
     }
 }

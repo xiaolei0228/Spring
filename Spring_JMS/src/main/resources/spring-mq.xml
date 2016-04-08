@@ -23,10 +23,8 @@
     <bean id="sessionAwareQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="sessionAwareQueue"/>
     </bean>
-    <!-- 3.2 监听器处理完逻辑后发送的目的地 -->
-    <bean id="afterTargetQueue" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg value="afterTargetQueue"/>
-    </bean>
+    <!-- 3.2 这个是topicDestination广播-->
+    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic"/>
 
     <!-- 4.1 SessionAware消息监听容器 -->
     <bean id="sessionAwareListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">

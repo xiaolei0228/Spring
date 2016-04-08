@@ -8,9 +8,9 @@ import java.io.Serializable;
  *
  * @author: haoxiaolei
  * @date: 2016-04-06 15:17
- * @desc: 发送者服务
+ * @desc: 队列发送者服务
  */
-public interface IQueueSenderService {
+public interface ISenderService {
 
     /**
      * 发送普通的纯文本消息

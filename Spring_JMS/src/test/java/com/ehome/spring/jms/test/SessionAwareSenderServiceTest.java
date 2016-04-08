@@ -1,7 +1,7 @@
 package com.ehome.spring.jms.test;
 
 import com.ehome.spring.jms.entity.User;
-import com.ehome.spring.jms.service.IQueueSenderService;
+import com.ehome.spring.jms.service.ISenderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,17 +24,17 @@ import java.util.Date;
 public class SessionAwareSenderServiceTest {
 
     @Resource
-    private IQueueSenderService senderService;
+    private ISenderService senderService;
     @Resource(name = "sessionAwareQueue")
     private Destination destination;
 
     @Test
-    public void sendMessage() throws JMSException {
+    public void sendQueueMessage() throws JMSException {
         senderService.sendMessage(destination, "发送一个消息：" + new Date().toLocaleString());
     }
 
     @Test
-    public void sendMessageWithSerializable() throws JMSException {
+    public void sendQueueMessageWithSerializable() throws JMSException {
         User user = new User();
         user.setName("单车上的理想");
         user.setPassword("888888");

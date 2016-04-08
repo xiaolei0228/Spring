@@ -14,7 +14,7 @@
         <springtest.version>4.2.5.RELEASE</springtest.version>
         <servletapi.version>3.1.0</servletapi.version>
         <jodd.version>3.5.2</jodd.version>
-        <fastjson.version>1.1.41</fastjson.version>
+        <fastjson.version>1.2.8</fastjson.version>
         <activemq-all.version>5.13.2</activemq-all.version>
     </properties>
 
@@ -73,6 +73,12 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>
             <version>${activemq-all.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -1,6 +1,6 @@
 package com.ehome.spring.jms.service.impl;
 
-import com.ehome.spring.jms.service.IQueueSenderService;
+import com.ehome.spring.jms.service.ISenderService;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.core.SessionCallback;
@@ -19,10 +19,10 @@ import java.io.Serializable;
  *
  * @author: haoxiaolei
  * @date: 2016-04-06 15:18
- * @desc: 发送者服务
+ * @desc: 队列发送服务
  */
 @Service
-public class QueueSenderServiceImpl implements IQueueSenderService {
+public class SenderServiceImpl implements ISenderService {
 
     @Resource
     private JmsTemplate jmsTemplate;
