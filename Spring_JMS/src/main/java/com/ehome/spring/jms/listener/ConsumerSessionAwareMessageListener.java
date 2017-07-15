@@ -20,7 +20,7 @@ import javax.jms.TextMessage;
  *
  * @author: haoxiaolei
  * @date: 2016-04-06 14:51
- * @desc:
+ * @desc: 消息消费者
  */
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
 
