@@ -2,7 +2,7 @@ package com.ehome.spring.jms.listener;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ehome.spring.jms.entity.User;
-import com.ehome.spring.jms.service.ISenderService;
+import com.ehome.spring.jms.service.SenderService;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.jms.listener.SessionAwareMessageListener;
@@ -25,7 +25,7 @@ import javax.jms.TextMessage;
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
 
     @Resource
-    private ISenderService senderService;
+    private SenderService senderService;
 
     public void onMessage(Message message, Session session) throws JMSException {
         if (message instanceof TextMessage) {

@@ -1,6 +1,6 @@
 package com.ehome.spring.jms.service.impl;
 
-import com.ehome.spring.jms.service.ISenderService;
+import com.ehome.spring.jms.service.SenderService;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.core.SessionCallback;
@@ -22,7 +22,7 @@ import java.io.Serializable;
  * @desc: 队列发送服务
  */
 @Service
-public class SenderServiceImpl implements ISenderService {
+public class SenderServiceImpl implements SenderService {
 
     @Resource
     private JmsTemplate jmsTemplate;
