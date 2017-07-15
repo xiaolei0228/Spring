@@ -21,7 +21,7 @@ import java.util.Date;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
-public class SessionAwareSenderServiceImplTest {
+public class SessionAwareSenderServiceTest {
 
     @Resource
     private SenderService senderService;
