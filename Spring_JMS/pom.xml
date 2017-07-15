@@ -15,7 +15,7 @@
         <servletapi.version>3.1.0</servletapi.version>
         <jodd.version>3.5.2</jodd.version>
         <fastjson.version>1.2.8</fastjson.version>
-        <activemq-all.version>5.13.2</activemq-all.version>
+        <activemq-all.version>5.15.0</activemq-all.version>
     </properties>
 
     <dependencies>
