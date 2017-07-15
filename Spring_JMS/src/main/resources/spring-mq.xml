@@ -19,11 +19,11 @@
         <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
 
-    <!-- 3.1 这个是sessionAwareQueue目的地-->
+    <!-- 3.1 这个是目的地sessionAwareQueue-->
     <bean id="sessionAwareQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="sessionAwareQueue"/>
     </bean>
-    <!-- 3.2 这个是topicDestination广播-->
+    <!-- 3.2 这个是广播topicDestination-->
     <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic"/>
 
     <!-- 4.1 SessionAware消息监听容器 -->
