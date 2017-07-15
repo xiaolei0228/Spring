@@ -17,9 +17,9 @@ import java.io.Serializable;
 /**
  * Spring
  *
- * @author: haoxiaolei
- * @date: 2016-04-06 15:18
- * @desc: 队列发送服务
+ * @作者: haoxiaolei
+ * @日期: 2016-04-06 15:18
+ * @描述: 队列发送服务
  */
 @Service
 public class SenderServiceImpl implements SenderService {

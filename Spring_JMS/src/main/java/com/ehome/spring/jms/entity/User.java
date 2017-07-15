@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * Spring
  *
- * @author: haoxiaolei
- * @date: 2016-04-06 16:12
- * @desc: 用户
+ * @作者: haoxiaolei
+ * @日期: 2016-04-06 16:12
+ * @描述: 用户
  */
 public class User implements Serializable {
     private static final long serialVersionUID = 4105363793571710222L;

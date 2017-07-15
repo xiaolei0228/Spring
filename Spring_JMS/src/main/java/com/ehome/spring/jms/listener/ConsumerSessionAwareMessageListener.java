@@ -18,9 +18,9 @@ import javax.jms.TextMessage;
 /**
  * Spring
  *
- * @author: haoxiaolei
- * @date: 2016-04-06 14:51
- * @desc: 消息消费者
+ * @作者: haoxiaolei
+ * @日期: 2016-04-06 14:51
+ * @描述: 消息消费者
  */
 public class ConsumerSessionAwareMessageListener implements SessionAwareMessageListener {
 
@@ -36,6 +36,8 @@ public class ConsumerSessionAwareMessageListener implements SessionAwareMessageL
             User user = (User) objMsg.getObject();
             System.out.println(user.getName() + "\t" + user.getPassword());
             String pid = user.getPid();
+
+            // TODO:以下可以写自己的业务逻辑
             // 写service方法处理业务逻辑
             String queue = "point_" + pid + "_queue";
             Destination destination = new ActiveMQQueue(queue);

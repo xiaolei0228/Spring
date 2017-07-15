@@ -15,9 +15,9 @@ import java.util.Date;
 /**
  * Spring
  *
- * @author: 郝晓雷
- * @date: 2016-04-06 11:34
- * @desc: 发送者服务测试类
+ * @作者: haoxiaolei
+ * @日期: 2016-04-06 11:34
+ * @描述: 发送者服务测试类
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")

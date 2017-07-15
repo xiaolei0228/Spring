@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 /**
  * Spring
- * @author: haoxiaolei
- * @date: 2016-04-06 15:17
- * @desc: 队列发送者服务
+ * @作者: haoxiaolei
+ * @日期: 2016-04-06 15:17
+ * @描述: 队列发送者服务
  */
 public interface SenderService {
 

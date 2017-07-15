@@ -17,6 +17,7 @@
     <!-- 2 Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="receiveTimeout" value="60000"/>
     </bean>
 
     <!-- 3.1 这个是目的地sessionAwareQueue-->
