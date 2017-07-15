@@ -21,8 +21,8 @@
     </bean>
 
     <!-- 3.1 这个是目的地sessionAwareQueue-->
-    <bean id="sessionAwareQueue" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg value="sessionAwareQueue"/>
+    <bean id="convertOfficeQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="convertOfficeQueue"/>
     </bean>
     <!-- 3.2 这个是广播topicDestination-->
     <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic"/>
@@ -30,7 +30,7 @@
     <!-- 4.1 SessionAware消息监听容器 -->
     <bean id="sessionAwareListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="destination" ref="sessionAwareQueue"/>
+        <property name="destination" ref="convertOfficeQueue"/>
         <property name="messageListener">
             <bean class="com.ehome.spring.jms.listener.ConsumerSessionAwareMessageListener"/>
         </property>

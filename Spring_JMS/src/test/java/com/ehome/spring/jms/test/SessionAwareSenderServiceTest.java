@@ -25,7 +25,7 @@ public class SessionAwareSenderServiceTest {
 
     @Resource
     private SenderService senderService;
-    @Resource(name = "sessionAwareQueue")
+    @Resource(name = "convertOfficeQueue")
     private Destination destination;
 
     @Test
